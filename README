@@ -1,0 +1,51 @@
+COSC481 - Handmaids of the Blessed Trinity Orphanages project
+
+The Handmaids site is based on WordPress. We're going to create a custom theme for the site
+so we're putting the entire site under version control. In order to keep the db under version
+control, we can save dumps from MySQL at times.
+
+---MySQL setup---
+1) install MySQL and start it 
+2) run the following to create the user and db:
+
+create database wp_handmaids;
+create user handmaids identified by "handmaids";
+grant all privileges on wp_handmaids.* to handmaids;
+
+This creates the user handmaids with the password handmaids and create the wordpress database we'll be using.
+
+
+---Apache setup---
+
+1) Add an entry for the wordpress root directory into the Apache configuration.
+Ex:
+
+ <VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+	ServerName handmaids-local
+
+	DocumentRoot /home/matt/documents/cosc481/handmaids/wordpress
+
+	ErrorLog /home/matt/documents/cosc481/handmaids/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel debug
+
+	CustomLog /home/matt/documents/cosc481/handmaids/access.log combined
+
+</VirtualHost>
+
+2) start or restart Apache
+Ex:
+
+sudo apache2ctl stop
+sudo apache2ctl start
+
+3) add an entry in the local hosts file (/etc/hosts). The name you put here needs to match
+the ServerName value in the Apache config.
+Ex:
+127.0.0.1	handmaids-local 
+
+4) Hit the host above from your browser (http://handmaids-local/) and you should see the
+Wordpress site.

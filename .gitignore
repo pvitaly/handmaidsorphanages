@@ -1,0 +1,8 @@
+# git ignore file
+
+# text editor temp files
+*~
+
+# log files
+*.log
+
