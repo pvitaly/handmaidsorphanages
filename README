@@ -7,12 +7,18 @@ control, we can save dumps from MySQL at times.
 ---MySQL setup---
 1) install MySQL and start it 
 2) run the following to create the user and db:
+Ex:
 
 create database wp_handmaids;
 create user handmaids identified by "handmaids";
 grant all privileges on wp_handmaids.* to handmaids;
 
-This creates the user handmaids with the password handmaids and create the wordpress database we'll be using.
+This creates the user 'handmaids' with the password 'handmaids' and creates the wordpress database we'll be using.
+
+3) setup the database using the init.sql script in the mysql directory.
+Ex:
+
+mysql -h localhost -u handmaids -p wp_handmaids < init.sql
 
 
 ---Apache setup---
