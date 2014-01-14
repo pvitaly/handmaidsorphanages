@@ -2,6 +2,7 @@
 
 # text editor temp files
 *~
+*.swp
 
 # log files
 *.log
