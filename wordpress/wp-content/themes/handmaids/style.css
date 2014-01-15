@@ -4,3 +4,27 @@ Author: COSC481 team
 Description: A theme for the Handmaids of the Blessed Trinity Orphanages site
 Version: 1.0
 */
+
+body {
+	margin: 0px;
+	background-color: #F0F0F0;
+}
+#page {
+
+}
+
+#header {
+	width: 100%;
+	background-color: #000000;
+}
+
+.wrapper {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.mainTitle {
+	color: white;
+	font-size: 25px;
+	font-family: sans-serif;
+}
