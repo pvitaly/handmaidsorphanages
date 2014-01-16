@@ -30,7 +30,13 @@ mysql -h localhost -u handmaids -p wp_handmaids < init.sql
 
 ---Apache setup---
 
-1) Add an entry for the wordpress root directory into the Apache configuration. If using WAMP, click on the wamp icon in the taskbar, browse to Apache and open httpd.conf. Scroll to the bottom of the file and add the entry below. Replace paths for DocumentRoom, ErrorLog, CustomLog with the path on your computer to the folders in the example.
+1) Add an entry for the wordpress root directory into the Apache configuration. 
+If using WAMP, click on the wamp icon in the taskbar, browse to Apache and open httpd.conf. Find these two lines and uncomment the second line by removing the #.
+
+# Virtual hosts
+# Include conf/extra/httpd-vhosts.conf
+
+Open httpd-vhosts.conf in C:\wamp\bin\apache\Apache2.4.4\conf\extra and add the code below at the bottom of the file. Replace paths for DocumentRoom, ErrorLog, CustomLog with the path on your computer to the folders in the example.
 Ex:
 
  <VirtualHost *:80>
