@@ -10,12 +10,11 @@ body {
 	background-color: #F0F0F0;
 }
 #page {
-
+	font-family: sans-serif;
 }
 
 #header {
 	width: 100%;
-	background-color: #000000;
 }
 
 .wrapper {
@@ -24,7 +23,50 @@ body {
 }
 
 .mainTitle {
-	color: white;
-	font-size: 25px;
-	font-family: sans-serif;
+	width: 25%;
+	font-size: 20px;
+	font-weight: bold;
+	float: right;
+}
+
+.navmenu {
+	width: 100%;
+	float: left;
+	padding: 0px;
+	list-style-type: none;
+	background-color: #000000;
+}
+
+.navmenu li {
+	float: left;
+}
+
+.navmenu li a {
+	font-weight: bold;
+	color: #F0F0F0;
+	margin: 10px 10px;
+	display: block;
+}
+.navmenu li a:hover {
+	color: #2FAADD;
+	text-decoration: none;
+}
+.uparrow {
+	margin: 0 auto;
+	display: none;
+	width: 0;
+	height: 0;
+	border-bottom: 5px solid #F0F0F0;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+}
+.navmenu .current a {
+	color: #2FAADD;
+}
+.current .uparrow {
+	display: block;
+}
+
+#main {
+	clear: both;
 }

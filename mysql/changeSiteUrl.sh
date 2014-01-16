@@ -22,6 +22,7 @@ fi
 echo "previous siteurl: $oldhost"
 
 script="update wp_options set option_value = '$1' where option_name = 'siteurl'; "
+script=${script}"update wp_options set option_value = '$1' where option_name = 'home'; "
 script=${script}"update wp_posts set guid = replace( guid, '$oldhost', '$1' ) where instr( guid, '$oldhost') = 1;"
 
 mysql -h localhost -u $USER -p${PSWD} $DB -e "$script"
