@@ -5,17 +5,24 @@ so we're putting the entire site under version control. In order to keep the db 
 control, we can save dumps from MySQL at times.
 
 ---MySQL setup---
-1) install MySQL and start it 
-2) run the following to create the user and db:
+1) Install MySQL
+2) Add an environment path variable for mysql
+	Ex: C:\wamp\bin\mysql\mysql5.6.12\bin;
+3) In Git Bash/Command line navigate to the MySQL folder in handmaids and start MySQL
+	Ex: Navigate to C:\Users\vpeker\COSC481\handmaids\mysql
+	Ex: mysql -u root
+4) run the following to create the user and db:
 Ex:
 
 create database wp_handmaids;
-create user handmaids identified by "handmaids";
+create user handmaids@'localhost' identified by "handmaids";
 grant all privileges on wp_handmaids.* to handmaids;
 
 This creates the user 'handmaids' with the password 'handmaids' and creates the wordpress database we'll be using.
 
-3) setup the database using the init.sql script in the mysql directory.
+5) Exit mysql by typing in 'exit'
+
+6) setup the database using the init.sql script in the mysql directory.
 Ex:
 
 mysql -h localhost -u handmaids -p wp_handmaids < init.sql
@@ -23,7 +30,13 @@ mysql -h localhost -u handmaids -p wp_handmaids < init.sql
 
 ---Apache setup---
 
-1) Add an entry for the wordpress root directory into the Apache configuration.
+1) Add an entry for the wordpress root directory into the Apache configuration. 
+If using WAMP, click on the wamp icon in the taskbar, browse to Apache and open httpd.conf. Find these two lines and uncomment the second line by removing the #.
+
+# Virtual hosts
+# Include conf/extra/httpd-vhosts.conf
+
+Open httpd-vhosts.conf in C:\wamp\bin\apache\Apache2.4.4\conf\extra and add the code below at the bottom of the file. Replace paths for DocumentRoom, ErrorLog, CustomLog with the path on your computer to the folders in the example.
 Ex:
 
  <VirtualHost *:80>
@@ -42,14 +55,14 @@ Ex:
 
 </VirtualHost>
 
-2) start or restart Apache
+2) start or restart Apache. If using WAMP, click on the icon in the taskbar and click on 'Restart All Services'
 Ex:
 
 sudo apache2ctl stop
 sudo apache2ctl start
 
-3) add an entry in the local hosts file (/etc/hosts). The name you put here needs to match
-the ServerName value in the Apache config.
+3) add an entry in the local hosts file (/etc/hosts). On Windows, the file is C:\Windows\system32\drivers\etc\hosts. 
+The name you put here needs to match the ServerName value in the Apache config.
 Ex:
 127.0.0.1	handmaids-local 
 
