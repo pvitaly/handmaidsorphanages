@@ -78,7 +78,10 @@ define('WPLANG', '');
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
+ 
+ //TODO: remove these debugging values
 define('WP_DEBUG', true);
+define('SAVEQUERIES', true);
 
 /* That's all, stop editing! Happy blogging. */
 

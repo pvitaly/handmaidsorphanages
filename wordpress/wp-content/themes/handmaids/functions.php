@@ -3,7 +3,10 @@
  * This file containing the initialization and library functions for the handmaids theme.
  */
 
-
+//include some class files
+require 'classes/treenode.php';
+require 'classes/dataloader.php';
+require 'classes/image.php';
 
 /*
  * Set up css and script injection 
@@ -22,5 +25,19 @@ function enqueue_theme_scripts() {
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_styles' );
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_scripts' );
 
+/**
+Returns the name of the current page. If the page is the front page, then 'home' is returned.
+If the page is a 404 page, then '404' is returned. Otherwise the global variable pagename is returned.
+*/
+function get_page_name(){
+	if (is_front_page()){
+		return 'home';
+	} elseif (is_404()){
+		return '404';
+	}
+	
+	global $pagename;
+	return $pagename;
+}
 
 ?>

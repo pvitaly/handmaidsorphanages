@@ -13,58 +13,60 @@ body {
 	font-family: sans-serif;
 }
 
-#header {
-	width: 100%;
-}
-
 .wrapper {
 	max-width: 800px;
 	margin: 0 auto;
 }
 
-.mainTitle {
+/********************* Header and Nav ****************************/
+
+#header {
+	width: 100%;
+}
+
+#mainTitle {
 	width: 25%;
 	font-size: 20px;
 	font-weight: bold;
 	float: right;
 }
 
-.navmenu {
+#navmenu {
 	width: 100%;
 	float: left;
 	padding: 0px;
 	list-style-type: none;
 	background-color: #000000;
+	position: relative;
 }
 
-.navmenu li {
+#navmenu li {
 	float: left;
 }
 
-.navmenu li a {
+#navmenu li a {
 	font-weight: bold;
 	color: #F0F0F0;
 	margin: 10px 10px;
 	display: block;
 }
-.navmenu li a:hover {
+
+#navmenu li a:hover {
 	color: #2FAADD;
 	text-decoration: none;
 }
+
 .uparrow {
 	margin: 0 auto;
-	display: none;
+	display: block;
 	width: 0;
 	height: 0;
 	border-bottom: 5px solid #F0F0F0;
 	border-right: 5px solid transparent;
 	border-left: 5px solid transparent;
 }
-.navmenu .current a {
+#navmenu .current > a {
 	color: #2FAADD;
-}
-.current .uparrow {
-	display: block;
 }
 
 #main {

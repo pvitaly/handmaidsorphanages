@@ -52,6 +52,14 @@ Ex:
 	LogLevel debug
 
 	CustomLog /home/matt/documents/cosc481/handmaids/access.log combined
+	
+	<Directory /home/matt/documents/cosc481/handmaids/wordpress >
+		Options FollowSymLinks
+		AllowOverride Limit Options FileInfo
+		DirectoryIndex index.php
+		Order allow,deny
+		Allow from all
+	</Directory>
 
 </VirtualHost>
 

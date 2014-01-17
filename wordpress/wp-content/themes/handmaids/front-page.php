@@ -3,8 +3,18 @@
  * The main home page for the handmaids theme.
  */
 
-get_header(); ?>
+get_header(); 
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec ipsum leo. Praesent et orci dictum, varius felis nec, dictum lacus. Donec lobortis ipsum vel mi pharetra, dictum condimentum libero ullamcorper. Cras a urna malesuada, malesuada mi eget, fermentum quam. Suspendisse tincidunt ligula ullamcorper leo vehicula bibendum. Suspendisse pretium tellus a enim suscipit mollis. Nunc in metus quis neque dapibus faucibus. Suspendisse potenti.</p>
+// photo carousel
+$img_list = Image::get_images();
 
-<?php get_footer(); ?> 
+echo '<div id="photo-carousel">';
+foreach ($img_list as $img){
+	echo "<img src='$img->guid'/>";
+}
+echo '</div>';
+
+//display the content
+get_template_part('content', 'page');
+
+get_footer(); ?> 

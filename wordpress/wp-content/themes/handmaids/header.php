@@ -4,44 +4,70 @@
  * div id="main" section.
  */
 
-//get the name of the current page
-global $pagename;
-$current_page = null;
-if ($pagename){
-	$current_page = strtolower($pagename);
-} elseif (is_front_page()){
-	$current_page = 'home';
+ $max_menu_depth = 0;
+ 
+/**
+Renders the page menu
+*/
+function build_page_menu($max_depth) {
+	//get the name of the current page
+	$current_page = get_page_name();
+	
+	//get a hierarchical list of all pages in the site
+	$page_list = DataLoader::get_page_list();
+	
+	//begin creating the 
+	$output = '<ul id="navmenu">';
+	
+	foreach ($page_list as $page_node){
+		$page = $page_node->node;
+		$is_current_page = ($current_page == $page->post_name);
+		
+		$output .= '<li';
+		if ($is_current_page) {
+			$output .=  ' class="current"';
+		}
+		$output .= '><a href="' . get_permalink($page->ID) . '">' . $page->post_title . '</a>';
+		
+		if ($is_current_page){
+			$output .= '<div class="uparrow"></div>';
+		}
+		
+		//render any children if needed
+		if ($page_node->has_children()){
+			$output .= build_page_children($page_node->children, 1, $max_depth);
+		}
+		
+		$output .= '</li>';
+	}
+	
+	$output .= '</ul>';
+	
+	return $output;
 }
 
-//create a map of page data for use in the nav menu
-$home = home_url();
-$pages = array(
-		array(
-			'name' => 'home',
-			'display' => 'Home',
-			'link' => $home . '/'
-		),
-		array(
-			'name' => 'about',
-			'display' => 'About',
-			'link' => $home . '/about'
-			),
-		array(
-			'name' => 'stories',
-			'display' => 'Stories',
-			'link' => $home . '/stories'
-			),
-		array(
-			'name' => 'visitor-logs',
-			'display' => 'Visitor Logs',
-			'link' => $home . '/visitor-logs'
-			),
-		array(
-			'name' => 'give',
-			'display' => 'Give',
-			'link' => $home . '/give'
-			)
-	);
+/**
+Recursive method to render a page heirarchy to the given max_depth
+*/
+function build_page_children($page_nodes, $current_depth, $max_depth){
+	if (empty($page_nodes) || $current_depth > $max_depth){
+		return '';
+	}
+	
+	$output = '<ul class="submenu">';
+	
+	foreach ($page_nodes as $page_node) {
+		$page = $page_node->node;
+		$output .= '<li><a href="' . get_permalink($page->ID) . '">' . $page->post_title . '</a>';
+		$output .= build_page_children($page_node->children, $current_depth++, $max_depth);
+		$output .= '</li>';
+	}
+	
+	$output .= '</ul>';
+	return $output;
+}
+
+
 
 ?><!DOCTYPE html>
 <!--[if IE 7]>
@@ -56,25 +82,18 @@ $pages = array(
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width">
-	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<title><?php echo wp_title( '|', false, 'right' ), get_bloginfo('name'); ?></title>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class() ?> >
 	<div id="page">
 		<div id="header">
 			<div class="wrapper">
-				<div class="mainTitle">Handmaids of the Blessed Trinity Orphanages</div>
-				<ul class="navmenu">
-					<?php foreach ($pages as $page) : ?>
-					
-					<li <?php if ($current_page == $page['name'] ) : ?>class="current"<?php endif; ?>>
-						<a href="<?php echo $page['link']; ?>"><?php echo $page['display']; ?></a>
-						<div class="uparrow"></div>	
-					</li>
-					<?php endforeach; ?>
-				</ul>
+				<div id="mainTitle">Handmaids of the Blessed Trinity Orphanages</div>
+				<?php echo build_page_menu($max_menu_depth); ?>
 			</div>
 		</div>
+
 		<div id="main" class="wrapper">
 
 
