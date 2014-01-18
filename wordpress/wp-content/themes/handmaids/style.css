@@ -63,7 +63,7 @@ body {
 }
 
 #navmenu li a:hover {
-	color: #2FAADD;
+	color: #48BF19;
 	text-decoration: none;
 }
 
@@ -77,7 +77,7 @@ body {
 	border-left: 5px solid transparent;
 }
 #navmenu .current > a {
-	color: #2FAADD;
+	color: #48BF19;
 }
 
 #main {

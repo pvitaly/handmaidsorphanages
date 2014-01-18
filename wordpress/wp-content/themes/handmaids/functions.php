@@ -4,7 +4,7 @@
  */
 
 //include some class files
-require 'classes/dbextractor.php';
+require 'classes/custom-post.php';
 require 'classes/page-class.php';
 require 'classes/image.php';
 

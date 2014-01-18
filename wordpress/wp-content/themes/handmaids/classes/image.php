@@ -16,43 +16,61 @@ class Image {
 	public $guid;
 	
 	/**
+	The description of the image.
+	*/
+	public $description;
+	
+	/**
+	Boolean value indicating whether or not this image should be displayed in the main
+	page image carousel.
+	*/
+	public $show_in_carousel;
+	
+	
+	/**
 	Returns the url for the image, firing all appropriate triggers 
 	*/
 	public function get_url(){
 		return wp_get_attachment_url($ID);
 	}
 	
+	public static $property_map = array(
+		'ID' => 'posts.ID',
+		'guid' => 'posts.guid',
+		'description' => 'posts.post_content',
+		'show_in_carousel' => 'custom.show_in_carousel'
+	);
+	
+	public static $post_type_name = 'attachment';
+	
 	/**
 	Retrieves Images from the database
 	TODO: add functionality to pass in filter arguments to this
 	*/
 	public static function get_images(){
-		return DBExtractor::find_all(self::criteria());
+		return CustomPost::find_all(__CLASS__, 
+			array(
+				'order' => 'ID'
+				)
+			);
 	}
 	
 	public static function get_carousel_images(){
-		return DBExtractor::find_all(self::criteria(array('post_content' => 'carousel')));
+		return CustomPost::find_all(__CLASS__, 
+			array(
+				'where' => array ('show_in_carousel' => 1),
+				'order' => 'ID'
+				)
+			);
 	}
 	
 	public static function get_logo(){
-		return DBExtractor::find(self::criteria(array('post_content' => 'logo')));
-	}
-	
-	private static function criteria($where = null){
-		global $wpdb;
-		
-		$where_args = array(
-					'post_type' => 'attachment'
-				);
-		if ($where){
-			$where_args = array_merge($where_args, $where);
-		}		
-
-		return array(
-			'class' => __CLASS__,
-			'table' => $wpdb->posts,
-			'where' => $where_args,
-			'order' => 'ID');
+		return CustomPost::find(__CLASS__, 
+			array(
+				'where' => array ('description' => 'logo'),
+				'order' => 'ID'
+				)
+			);
 	}
 }
 
