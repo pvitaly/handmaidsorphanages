@@ -11,31 +11,31 @@ Renders the page menu
 */
 function build_page_menu($max_depth) {
 	//get the name of the current page
-	$current_page = get_page_name();
+	$current_page = Page::get_current_pagename();
 	
 	//get a hierarchical list of all pages in the site
-	$page_list = DataLoader::get_page_list();
+	$page_list = Page::get_pages();
 	
-	//begin creating the 
-	$output = '<ul id="navmenu">';
 	
-	foreach ($page_list as $page_node){
-		$page = $page_node->node;
-		$is_current_page = ($current_page == $page->post_name);
+	//begin creating the output 
+	$output = '<ul id="navmenu" class="horizontalList">';
+	
+	foreach ($page_list as $page){
+		$is_selected_page = $page->in_tree($current_page);
 		
 		$output .= '<li';
-		if ($is_current_page) {
+		if ($is_selected_page) {
 			$output .=  ' class="current"';
 		}
-		$output .= '><a href="' . get_permalink($page->ID) . '">' . $page->post_title . '</a>';
+		$output .= '><a href="' . $page->get_permalink() . '">' . $page->title . '</a>';
 		
-		if ($is_current_page){
+		if ($is_selected_page){
 			$output .= '<div class="uparrow"></div>';
 		}
 		
 		//render any children if needed
-		if ($page_node->has_children()){
-			$output .= build_page_children($page_node->children, 1, $max_depth);
+		if ($page->has_children()){
+			$output .= build_page_children($page->children, 1, $max_depth);
 		}
 		
 		$output .= '</li>';
@@ -49,17 +49,16 @@ function build_page_menu($max_depth) {
 /**
 Recursive method to render a page heirarchy to the given max_depth
 */
-function build_page_children($page_nodes, $current_depth, $max_depth){
-	if (empty($page_nodes) || $current_depth > $max_depth){
+function build_page_children($page_list, $current_depth, $max_depth){
+	if (empty($page_list) || $current_depth > $max_depth){
 		return '';
 	}
 	
 	$output = '<ul class="submenu">';
 	
-	foreach ($page_nodes as $page_node) {
-		$page = $page_node->node;
-		$output .= '<li><a href="' . get_permalink($page->ID) . '">' . $page->post_title . '</a>';
-		$output .= build_page_children($page_node->children, $current_depth++, $max_depth);
+	foreach ($page_list as $page) {
+		$output .= '<li><a href="' . $page->get_permalink() . '">' . $page->title . '</a>';
+		$output .= build_page_children($page->children, $current_depth++, $max_depth);
 		$output .= '</li>';
 	}
 	
@@ -67,7 +66,7 @@ function build_page_children($page_nodes, $current_depth, $max_depth){
 	return $output;
 }
 
-
+$logo = Image::get_logo();
 
 ?><!DOCTYPE html>
 <!--[if IE 7]>
@@ -89,6 +88,7 @@ function build_page_children($page_nodes, $current_depth, $max_depth){
 	<div id="page">
 		<div id="header">
 			<div class="wrapper">
+				<img class="logo" src="<?php echo $logo->guid; ?>"/>
 				<div id="mainTitle">Handmaids of the Blessed Trinity Orphanages</div>
 				<?php echo build_page_menu($max_menu_depth); ?>
 			</div>

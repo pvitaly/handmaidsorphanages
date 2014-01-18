@@ -15,12 +15,6 @@ class Image {
 	*/
 	public $guid;
 	
-	private function __construct($row){
-		foreach ($row as $col => $val){
-			$this->$col = $val;
-		}
-	}
-	
 	/**
 	Returns the url for the image, firing all appropriate triggers 
 	*/
@@ -33,22 +27,33 @@ class Image {
 	TODO: add functionality to pass in filter arguments to this
 	*/
 	public static function get_images(){
-		global $wpdb;
-		
-		$query_results = $wpdb->get_results(
-				"select ID, guid from $wpdb->posts as posts where post_type = 'attachment'",
-				ARRAY_A //returns the output as a numerically indexed array of associative arrays, with columns as keys
-			);
-		
-		$img_list = array();
-		
-		foreach ($query_results as $row){
-			array_push ($img_list, new Image($row));
-		}
-		
-		return $img_list;
+		return DBExtractor::find_all(self::criteria());
 	}
 	
+	public static function get_carousel_images(){
+		return DBExtractor::find_all(self::criteria(array('post_content' => 'carousel')));
+	}
+	
+	public static function get_logo(){
+		return DBExtractor::find(self::criteria(array('post_content' => 'logo')));
+	}
+	
+	private static function criteria($where = null){
+		global $wpdb;
+		
+		$where_args = array(
+					'post_type' => 'attachment'
+				);
+		if ($where){
+			$where_args = array_merge($where_args, $where);
+		}		
+
+		return array(
+			'class' => __CLASS__,
+			'table' => $wpdb->posts,
+			'where' => $where_args,
+			'order' => 'ID');
+	}
 }
 
 ?>

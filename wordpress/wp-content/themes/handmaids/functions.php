@@ -4,8 +4,8 @@
  */
 
 //include some class files
-require 'classes/treenode.php';
-require 'classes/dataloader.php';
+require 'classes/dbextractor.php';
+require 'classes/page-class.php';
 require 'classes/image.php';
 
 /*
@@ -24,20 +24,5 @@ function enqueue_theme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_styles' );
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_scripts' );
-
-/**
-Returns the name of the current page. If the page is the front page, then 'home' is returned.
-If the page is a 404 page, then '404' is returned. Otherwise the global variable pagename is returned.
-*/
-function get_page_name(){
-	if (is_front_page()){
-		return 'home';
-	} elseif (is_404()){
-		return '404';
-	}
-	
-	global $pagename;
-	return $pagename;
-}
 
 ?>

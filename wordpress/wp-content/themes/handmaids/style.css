@@ -20,6 +20,14 @@ body {
 
 /********************* Header and Nav ****************************/
 
+.logo {
+	width: 50px;
+	height: 50px;
+	float: left;
+	display: block;
+	margin: 20px 10px 20px 0px;
+}
+
 #header {
 	width: 100%;
 }
@@ -28,16 +36,19 @@ body {
 	width: 25%;
 	font-size: 20px;
 	font-weight: bold;
-	float: right;
+	float: left;
 }
 
 #navmenu {
 	width: 100%;
-	float: left;
 	padding: 0px;
-	list-style-type: none;
 	background-color: #000000;
 	position: relative;
+}
+
+.horizontalList {
+	float: left;
+	list-style-type: none;
 }
 
 #navmenu li {

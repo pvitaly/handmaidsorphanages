@@ -6,12 +6,19 @@
 get_header(); 
 
 // photo carousel
-$img_list = Image::get_images();
+$img_list = Image::get_carousel_images();
 
 echo '<div id="photo-carousel">';
-foreach ($img_list as $img){
-	echo "<img src='$img->guid'/>";
-}
+
+//display a random picture for now
+$idx = rand(0, count($img_list) - 1);
+$img = $img_list[$idx];
+echo "<img src='$img->guid'/>";
+
+// foreach ($img_list as $img){
+	// echo "<img src='$img->guid'/>";
+// }
+
 echo '</div>';
 
 //display the content
