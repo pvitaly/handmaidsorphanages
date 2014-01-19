@@ -30,7 +30,8 @@ class CustomPost {
 	an argument.
 	*/
 	public static function find($class, $args = array()){
-		return array_shift(self::exec($class, $args, 1));
+		$result = self::exec($class, $args, 1);
+		return array_shift($result);
 	}
 	
 	/**

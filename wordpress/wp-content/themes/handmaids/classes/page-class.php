@@ -36,8 +36,8 @@ class Page {
 		if ($this->name == $pagename){
 			return true;
 		}
-		
-		//check any descendants
+	
+			//check any descendants
 		if ($this->children){
 			foreach ($this->children as $child){
 				if ($child->in_tree($pagename)){
@@ -67,7 +67,9 @@ class Page {
 
 		$post_list[] = $post;
 		
-		return array_shift(self::to_page_list($post_list));		
+		$results = self::to_page_list($post_list);
+
+		return array_shift($results);		
 	}
 	
 	/**
