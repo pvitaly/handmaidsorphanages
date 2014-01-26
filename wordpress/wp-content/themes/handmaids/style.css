@@ -6,80 +6,116 @@ Version: 1.0
 */
 
 body {
-	margin: 0px;
-	background-color: #F0F0F0;
+    margin: 0px;
+    background-color: #F0F0F0;
 }
 #page {
-	font-family: sans-serif;
+    font-family: sans-serif;
 }
 
 .wrapper {
-	max-width: 800px;
-	margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /********************* Header and Nav ****************************/
 
 .logo {
-	width: 50px;
-	height: 50px;
-	float: left;
-	display: block;
-	margin: 20px 10px 20px 0px;
+    width: 50px;
+    height: 50px;
+    float: left;
+    display: block;
+    margin: 20px 10px 20px 0px;
 }
 
 #header {
-	width: 100%;
+    width: 100%;
 }
 
 #mainTitle {
-	width: 25%;
-	font-size: 20px;
-	font-weight: bold;
-	float: left;
+    width: 25%;
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
 }
 
 #navmenu {
-	width: 100%;
-	padding: 0px;
-	background-color: #000000;
-	position: relative;
+    width: 100%;
+    padding: 0px;
+    background-color: #000000;
+    position: relative;
 }
 
 .horizontalList {
-	float: left;
-	list-style-type: none;
+    float: left;
+    list-style-type: none;
 }
 
 #navmenu li {
-	float: left;
+    float: left;
 }
 
 #navmenu li a {
-	font-weight: bold;
-	color: #F0F0F0;
-	margin: 10px 10px;
-	display: block;
+    font-weight: bold;
+    color: #F0F0F0;
+    margin: 10px 10px;
+    display: block;
 }
 
 #navmenu li a:hover {
-	color: #48BF19;
-	text-decoration: none;
+    color: #48BF19;
+    text-decoration: none;
 }
 
 .uparrow {
-	margin: 0 auto;
-	display: block;
-	width: 0;
-	height: 0;
-	border-bottom: 5px solid #F0F0F0;
-	border-right: 5px solid transparent;
-	border-left: 5px solid transparent;
+    margin: 0 auto;
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 5px solid #F0F0F0;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
 }
 #navmenu .current > a {
-	color: #48BF19;
+    color: #48BF19;
 }
 
 #main {
-	clear: both;
+    clear: both;
 }
+.row {
+    margin-left: auto;
+    margin-right: auto;
+}
+.carousel-image {
+    margin-left: auto;
+    margin-right: auto;
+}
+.carousel-control {
+    width: 5%;
+    left: 7%;
+}
+.carousel-control.right {
+    left: 88%;
+}
+.carousel-control.left, .carousel-control.right {
+    color: white;
+    background-image: none;
+}
+.carousel-control .icon-next, .carousel-control .glyphicon-chevron-right {
+    right: 20%;
+}
+.carousel-control .icon-prev, .carousel-control .glyphicon-chevron-left {
+    left: 20%;
+}
+@media (min-width : 1200px) {
+    #page-content {
+        width: 900px;
+    }
+}
+@media (min-width : 992px) {
+    #page-content {
+        width: 900px;
+    }
+}
+

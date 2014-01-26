@@ -3,7 +3,8 @@
 This is the standard template for displaying main page content
 */
 ?>
-<div class="page-content">
+<div id="page-content" class="container">
+<div class="row">
 <?php
 /* add links for any existing subpages */
 $cur_page = Page::get_current_page();
@@ -15,10 +16,10 @@ if ($cur_page && $cur_page->has_children()){
 	}
 	echo '</ul>';
 }
-
 while (have_posts()){
 	the_post();
 	the_content();
 }
 ?>
+</div>
 </div>

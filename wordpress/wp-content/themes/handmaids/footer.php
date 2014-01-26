@@ -5,7 +5,7 @@
 ?>
 
 		</div> <!-- main div -->
-	<div id="footer">
+	<div id="footer" class="row">
 		<?php wp_footer(); ?> 	
 	</div>
 	</div> <!-- page div -->

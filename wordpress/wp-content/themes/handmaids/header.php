@@ -94,6 +94,6 @@ $logo = Image::get_logo();
 			</div>
 		</div>
 
-		<div id="main" class="wrapper">
+		<div id="main" class="wrapper container">
 
 

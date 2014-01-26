@@ -12,7 +12,7 @@ require 'classes/image.php';
  * Set up css and script injection 
  */ 
 function enqueue_theme_styles() {
-	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css');
+	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css');
 	wp_enqueue_style('main-style', get_stylesheet_uri());
 }
 function enqueue_theme_scripts() {
