@@ -66,8 +66,6 @@ function build_page_children($page_list, $current_depth, $max_depth){
 	return $output;
 }
 
-$logo = Image::get_logo();
-
 ?><!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
@@ -88,7 +86,7 @@ $logo = Image::get_logo();
 	<div id="page">
 		<div id="header">
 			<div class="wrapper">
-				<img class="logo" src="<?php echo $logo->guid; ?>"/>
+				<img class="logo" src="<?php echo get_stylesheet_directory_uri() . "/img/logo.png"; ?>"/>
 				<div id="mainTitle">Handmaids of the Blessed Trinity Orphanages</div>
 				<?php echo build_page_menu($max_menu_depth); ?>
 			</div>

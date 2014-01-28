@@ -63,15 +63,6 @@ class Image {
 				)
 			);
 	}
-	
-	public static function get_logo(){
-		return CustomPost::find(__CLASS__, 
-			array(
-				'where' => array ('description' => 'logo'),
-				'order' => 'ID'
-				)
-			);
-	}
 }
 
 ?>
