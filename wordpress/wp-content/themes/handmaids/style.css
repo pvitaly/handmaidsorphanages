@@ -18,7 +18,7 @@ body {
     margin: 0 auto;
 }
 
-/********************* Header and Nav ****************************/
+/********************* Header  ****************************/
 
 .logo {
     width: 50px;
@@ -39,20 +39,19 @@ body {
     float: left;
 }
 
+/******************************* Nav Menu ********************************/
+
 #navmenu {
     width: 100%;
     padding: 0px;
     background-color: #000000;
     position: relative;
-}
-
-.horizontalList {
-    float: left;
+	float: left;	/*aligns the menu items to the left*/
     list-style-type: none;
 }
 
 #navmenu li {
-    float: left;
+    float: left; /*creates a horizontal list for the main menu items*/
 }
 
 #navmenu li a {
@@ -62,13 +61,14 @@ body {
     display: block;
 }
 
-#navmenu li a:hover {
+#navmenu li:hover > a {
     color: #48BF19;
     text-decoration: none;
 }
 
-.uparrow {
-    margin: 0 auto;
+#navmenu  .uparrow  {
+	visibility: hidden;
+	margin: 0 auto;
     display: block;
     width: 0;
     height: 0;
@@ -76,9 +76,53 @@ body {
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
 }
+
+#navmenu .current .uparrow  {
+	visibility: visible;
+}
+
 #navmenu .current > a {
     color: #48BF19;
 }
+
+/*displays the submenus when the parent is hovered over*/
+#navmenu li:hover > ul {
+	display: block;
+}
+
+/*selects the sibling uparrow of a newly visible submenu */
+#navmenu li:hover > ul ~ .uparrow {
+	visibility: visible;
+	border-bottom: 5px solid #444444;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+
+#navmenu ul {
+	display: none; /*hides the submenus when not needed*/
+	position: absolute;
+	list-style-type: none;
+	top: 100%;
+	float: none;
+	margin: 0px;
+	padding: 0px;
+	z-index: 20;
+}
+
+#navmenu ul li {
+	background-color: #444444;
+	float: none;
+	margin: 0;
+	padding: 0;
+}
+
+#navmenu ul li a {
+	margin: 0px;
+	padding: 10px;
+}
+
+
+/*************************************End Nav Menu***********************************/
 
 #main {
     clear: both;

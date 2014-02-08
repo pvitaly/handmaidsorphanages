@@ -4,7 +4,7 @@
  * div id="main" section.
  */
 
- $max_menu_depth = 0;
+ $max_menu_depth = 1;
  
 /**
 Renders the page menu
@@ -29,14 +29,14 @@ function build_page_menu($max_depth) {
 		}
 		$output .= '><a href="' . $page->get_permalink() . '">' . $page->title . '</a>';
 		
-		if ($is_selected_page){
-			$output .= '<div class="uparrow"></div>';
-		}
-		
 		//render any children if needed
 		if ($page->has_children()){
 			$output .= build_page_children($page->children, 1, $max_depth);
 		}
+		
+		//if ($is_selected_page){
+			$output .= '<div class="uparrow"></div>';
+		//}
 		
 		$output .= '</li>';
 	}
