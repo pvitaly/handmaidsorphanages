@@ -3,48 +3,53 @@
  * The main home page for the handmaids theme.
  */
 
+ //display the header
 get_header(); 
 
-// photo carousel
+// get the carousel images and randomize them
 $img_list = Image::get_carousel_images();
 
-echo '<div id="carousel-div" class="row">';
-echo '<div id="carousel-generic" class="carousel slide" data-ride="carousel">';
-// indicators 
-echo ' <ol class="carousel-indicators">';
-echo '<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>';
-echo '<li data-target="#carousel-example-generic" data-slide-to="1"></li>';
-echo '</ol>';
-echo '<div class="carousel-inner">';
-echo '<div class="item active">';
-$img = $img_list[0];
-echo "<img class='carousel-image img-rounded' src='$img->guid'/>";
-echo '</div>';
-echo '<div class="item">';
-$img2 = $img_list[1];
-echo "<img class='carousel-image img-rounded' src='$img2->guid'/>";
-echo '</div>';
-echo '</div>';
+shuffle($img_list); 
 
-// Controls
-echo '<a class="left carousel-control" href="#carousel-generic" data-slide="prev">';
-echo '<span class="glyphicon glyphicon-chevron-left"></span>';
-echo '</a>';
-echo '<a class="right carousel-control" href="#carousel-generic" data-slide="next">';
-echo '<span class="glyphicon glyphicon-chevron-right"></span>';
-echo '</a>';
-echo '</div>';
-echo '</div>';
+?>
+	<div id="carousel-div" class="row">
+		<div id="home-carousel" class="carousel slide" data-ride="carousel">
 
+			<ol class="carousel-indicators">
+					<?php
+					//loop through the images and add the markers for them
+					for ( $i = 0; $i <count($img_list) ; ++$i) : ?>
+						<li data-target="#home-carousel" data-slide-to="<?php echo $i; ?>" <?php if ($i == 0) { echo ' class="active"'; } ?>></li>
+				<?php endfor; ?>
+			</ol>
+			
+			<div class="carousel-inner">
+			
+			<?php
+				//loop through the images and add them
+				for ( $i = 0; $i <count($img_list) ; ++$i) : ?>
+					<div class="item<?php if ($i == 0) { echo ' active'; } ?>">	
+						<img class="carousel-image img-rounded" src="<?php echo $img_list[$i]->guid; ?>" />
+					</div>
+			<?php endfor; ?>
 
-
-// foreach ($img_list as $img){
-	// echo "<img src='$img->guid'/>";
-// }
-
-echo '</div>';
+			</div>
+			
+			<a class="left carousel-control" href="#home-carousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a class="right carousel-control" href="#home-carousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
+	</div>
+	
+<?php
 
 //display the content
 get_template_part('content', 'page');
 
-get_footer(); ?> 
+//display the footer
+get_footer(); 
+
+?> 
