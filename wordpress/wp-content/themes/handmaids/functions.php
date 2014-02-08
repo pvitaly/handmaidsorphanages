@@ -2,11 +2,19 @@
 /*
  * This file containing the initialization and library functions for the handmaids theme.
  */
-
+ 
 //include some class files
-require 'classes/custom-post.php';
-require 'classes/page-class.php';
-require 'classes/image.php';
+require 'includes/class-pods-helper.php';
+require 'includes/class-image.php';
+require 'includes/class-page.php';
+
+//load the admin page ui if needed
+if (is_admin()){
+	require 'includes/admin-menu.php';
+}
+
+
+
 
 /*
  * Set up css and script injection 
@@ -24,5 +32,3 @@ function enqueue_theme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_styles' );
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_scripts' );
-
-?>
