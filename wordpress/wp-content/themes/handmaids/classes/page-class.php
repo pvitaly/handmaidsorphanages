@@ -11,7 +11,16 @@ class Page {
     public $guid;
     public $parent_ID;
     public $parent_page;
+    public $is_current_page;
     public $children = array();
+
+    public function get_is_current_page() {
+        return $this->is_current_page;
+    }
+    
+    public function set_is_current_page($val) {
+        $this->is_current_page = $val;
+    }
 
     public function get_permalink() {
         return get_permalink($this->ID);

@@ -56,12 +56,13 @@ class Image {
 	}
 	
 	public static function get_carousel_images(){
-		return CustomPost::find_all(__CLASS__, 
+            $imgs = CustomPost::find_all(__CLASS__, 
 			array(
 				'where' => array ('show_in_carousel' => 1),
 				'order' => 'ID'
 				)
 			);
+		return $imgs;
 	}
 	
 	public static function get_logo(){
