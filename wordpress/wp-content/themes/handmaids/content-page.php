@@ -2,22 +2,16 @@
 /**
 This is the standard template for displaying main page content
 */
-?>
-<div id="page-content" class="row">
-<?php
+
 /* add links for any existing subpages */
 $cur_page = Page::get_current_page();
-if ($cur_page && $cur_page->has_children()){
-	echo '<ul>';
-	foreach ($cur_page->children as $child){
-		$link = $child->get_permalink();
-		echo "<li><a href='$link'>$child->title</a></li>";
-	}
-	echo '</ul>';
-}
+$content_context = array(
+    'cur_page' => $cur_page,
+    'posts'=> Timber::get_posts()
+);
+
+Timber::render('content.twig', $content_context);
 while (have_posts()){
 	the_post();
 	the_content();
 }
-?>
-</div>

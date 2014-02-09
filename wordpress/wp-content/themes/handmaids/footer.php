@@ -5,10 +5,11 @@
 ?>
 
 		</div> <!-- main div -->
-	<div id="footer" class="row">
-		<?php wp_footer(); ?> 	
-	</div>
+                
+<?php Timber::render('footer.twig'); ?>
+                
 	</div> <!-- page div -->
+		<?php wp_footer(); ?> 	
 </body>
 <?php 
 

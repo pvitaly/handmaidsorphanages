@@ -1,4 +1,5 @@
 <?php
+
 /*
  * The header for the handmaids theme. This displays all of the head tags and the content header up until the
  * div id="main" section.
@@ -15,110 +16,17 @@ function build_page_menu($max_depth) {
     //get a hierarchical list of all pages in the site
     $page_list = Page::get_pages();
 
-
-    //begin creating the output 
-//	$output = '<ul id="navmenu" class="horizontalList">';
-
     foreach ($page_list as $page) {
         $is_selected = $page->in_tree($current_page);
         $page->set_is_current_page($is_selected);
-
-        //render any children if needed
-//        if ($page->has_children()) {
-//            $output .= build_page_children($page->children, 1, $max_depth);
-//        }
     }
-
     $context = array();
     $context['page_list'] = $page_list;
     Timber::render('navmenu.twig', $context);
 
-
-
-//	foreach ($page_list as $page){
-//		$is_selected_page = $page->in_tree($current_page);
-//		
-//		$output .= '<li';
-//		if ($is_selected_page) {
-//			$output .=  ' class="current"';
-//		}
-//		$output .= '><a href="' . $page->get_permalink() . '">' . $page->title . '</a>';
-//		
-//		if ($is_selected_page){
-//			$output .= '<div class="uparrow"></div>';
-//		}
-//		
-//		//render any children if needed
-//		if ($page->has_children()){
-//			$output .= build_page_children($page->children, 1, $max_depth);
-//		}
-//		
-//		$output .= '</li>';
-//	}
-//	
-//	$output .= '</ul>';
-//	
-//        return $output;
 }
-
-/* FROM ORIGIN MERGE ON 2/8/14
- * 	//get the name of the current page
-	$current_page = Page::get_current_pagename();
-	
-	//get a hierarchical list of all pages in the site
-	$page_list = Page::get_pages();
-	
-	
-	//begin creating the output 
-	$output = '<ul id="navmenu" class="horizontalList">';
-	
-	foreach ($page_list as $page){
-		$is_selected_page = $page->in_tree($current_page);
-		
-		$output .= '<li';
-		if ($is_selected_page) {
-			$output .=  ' class="current"';
-		}
-		$output .= '><a href="' . $page->get_permalink() . '">' . $page->title . '</a>';
-		
-		//render any children if needed
-		if ($page->has_children()){
-			$output .= build_page_children($page->children, 1, $max_depth);
-		}
-		
-		//if ($is_selected_page){
-			$output .= '<div class="uparrow"></div>';
-		//}
-		
-		$output .= '</li>';
-	}
-	
-	$output .= '</ul>';
-	
-	return $output;
- */
-
-/**
-  Recursive method to render a page heirarchy to the given max_depth
- */
-function build_page_children($page_list, $current_depth, $max_depth) {
-    if (empty($page_list) || $current_depth > $max_depth) {
-        return '';
-    }
-
-    $output = '<ul class="submenu">';
-
-    foreach ($page_list as $page) {
-        $output .= '<li><a href="' . $page->get_permalink() . '">' . $page->title . '</a>';
-        $output .= build_page_children($page->children, $current_depth++, $max_depth);
-        $output .= '</li>';
-    }
-
-    $output .= '</ul>';
-    return $output;
-}
-
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
 <![endif]-->
@@ -144,5 +52,3 @@ function build_page_children($page_list, $current_depth, $max_depth) {
 		</div>
 
 		<div id="main" class="wrapper container">
-
-
