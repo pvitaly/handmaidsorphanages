@@ -1,0 +1,9 @@
+<div id="page-content" class="row">
+    {% if cur_page.children|e %}
+        <ul>
+            {% for child in cur_page.children %}
+                <li><a href='{{child.get_permalink}}'>{{child.title}}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div><!-- content div -->
