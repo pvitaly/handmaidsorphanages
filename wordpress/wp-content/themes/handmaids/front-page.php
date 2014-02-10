@@ -11,8 +11,7 @@ $img_list = Image::get_carousel_images();
 
 shuffle($img_list); 
 $img_context = array(
-    'img1' => $img_list[0]->guid,
-    'img2' => $img_list[1]->guid
+    'img_list' => $img_list
 );
 Timber::render('carousel.twig', $img_context);
 
