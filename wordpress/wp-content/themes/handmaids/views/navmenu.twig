@@ -3,7 +3,7 @@
     <li {% if page.is_current_page == true %} class="current" {% endif %}>
         <a href="{{page.get_permalink}}">{{page.title}}</a>
 
-        <div class="uparrow"></div> 
+        
     {% if page.children|e %}
         <ul class="submenu">
             {% for child in page.children %}
@@ -11,6 +11,9 @@
             {% endfor %}
         </ul>
     {% endif %}
-    </li>
+	
+	<div class="uparrow"></div> 
+    
+	</li>
 {% endfor %}
 </ul>
