@@ -10,16 +10,9 @@
   Renders the page menu
  */
 function build_page_menu($max_depth) {
-    //get the name of the current page
-    $current_page = Page::get_current_pagename();
-
     //get a hierarchical list of all pages in the site
     $page_list = Page::get_pages();
 
-    foreach ($page_list as $page) {
-        $is_selected = $page->in_tree($current_page);
-        $page->set_is_current_page($is_selected);
-    }
     $context = array();
     $context['page_list'] = $page_list;
     Timber::render('navmenu.twig', $context);
@@ -44,7 +37,7 @@ function build_page_menu($max_depth) {
 <body <?php body_class() ?> >
 	<div id="page">
 		<div id="header">
-			<div class="wrapper">
+			<div class="wrapper clearfix">
 				<img class="logo" src="<?php echo get_stylesheet_directory_uri() . "/img/logo.png"; ?>"/>
 				<div id="mainTitle">Handmaids of the Blessed Trinity Orphanages</div>
 				<?php echo build_page_menu($max_menu_depth); ?>
