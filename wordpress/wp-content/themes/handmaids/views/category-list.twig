@@ -10,7 +10,10 @@
 	
 		{% for post in posts %}
 			<div class="content-container">
-				<div class="post-title">{{post.title}}</div>
+				<div>
+					<div class="post-title">{{post.title}}</div>
+					<div class="post-date">{{post.display_date}}</div>
+				</div>
 				<div class="post-content">
 					{{post.content}}
 				</div>
