@@ -48,87 +48,92 @@ body {
 
 /******************************* Nav Menu ********************************/
 
-#navmenu {
-    width: 100%;
-    margin: 0px;
-	padding: 0px;
-    background-color: #060606;
-    position: relative;
-	float: left;	/*aligns the menu items to the left*/
-    list-style-type: none;
-}
-
-#navmenu li {
-    float: left; /*creates a horizontal list for the main menu items*/
-}
-
-#navmenu li a {
-    font-weight: bold;
-    color: #F0F0F0;
-    margin: 10px 10px;
-    display: block;
-}
-
-#navmenu li:hover > a {
-    color: #48BF19;
-    text-decoration: none;
-}
-
-#navmenu  .uparrow  {
-	visibility: hidden;
-	margin: 0 auto;
-    display: block;
-    width: 0;
-    height: 0;
-    border-bottom: 5px solid #F0F0F0;
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-}
-
-#navmenu .current .uparrow  {
-	visibility: visible;
-}
-
-#navmenu .current > a {
-    color: #48BF19;
-}
-
-/*displays the submenus when the parent is hovered over*/
-#navmenu li:hover > ul {
-	display: block;
-}
-
-/*selects the sibling uparrow of a newly visible submenu */
-#navmenu li:hover > ul ~ .uparrow {
-	visibility: visible;
-	border-bottom: 5px solid #444444;
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-}
-
-#navmenu ul {
-	display: none; /*hides the submenus when not needed*/
-	position: absolute;
-	list-style-type: none;
-	top: 100%;
-	float: none;
-	margin: 0px;
-	padding: 0px;
-	z-index: 20;
-}
-
-#navmenu ul li {
-	background-color: #444444;
-	float: none;
+#navmenu { /* nav menu div */
+	width: 100%;
 	margin: 0;
 	padding: 0;
+	background-color: #060606;
+	clear: both;
 }
 
-#navmenu ul li a {
+#navmenu ul { /* top level menu list */
+	position: relative;
+	list-style-type: none;
+	float: left;
+	margin: 0;
+}
+
+#navmenu ul > li { /* horizontal list */
+	float: left;
+}
+
+#navmenu li a {  /* top level links */
+	font-weight: bold;
+    color: #F0F0F0;
+    padding: 10px;
 	margin: 0px;
-	padding: 10px;
+    display: block;
+	text-decoration: none;
 }
 
+/* hover and current page list items */
+#navmenu li:hover,
+#navmenu li.current {
+	background-color: #48BF19;
+	color: #060606;
+}
+
+/* hover and current page  links */
+#navmenu li:hover > a,
+#navmenu li.current > a {
+	color: #060606;
+}
+
+#navmenu .uparrow { /* the small uparrow div */
+	visibility: hidden;
+	margin: 0 auto;
+	display: block;
+	width: 0;
+	height: 0;
+	border-bottom: 5px solid #F0F0F0;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+
+/* show uparrow for current page */
+#navmenu .current .uparrow {
+	visibility: visible;
+}
+
+/* show uparrow with different color for hovered submenus */
+#navmenu li:hover > ul ~ .uparrow {
+	visibility: visible;
+	border-bottom: 5px solid #555;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+
+#navmenu ul ul { /* submenu */
+	display: none; /* hide the submenus when not needed */
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	top: 100%;
+	z-index: 20; /* make sure the submenu appears above everything else */
+}
+
+#navmenu li:hover > ul { /* hovered submenus */
+	display: block; /* show submenus on parent hover */
+}
+
+#navmenu ul ul li { /* submenu list items */
+	float: none;
+	background-color: #444;
+}
+
+#navmenu ul ul li:hover { /* submenu hovered list items */
+	background-color: #666;
+}
 
 /************************************ Sidebar ***********************************/
 
