@@ -1,7 +1,7 @@
 <div id="sidebar">
 	<ul>
 		{% for page in pages %}
-			<li{% if page.is_in_page_path %} class="current"{% endif%}><a href="{{page.guid}}">{{page.title}}</a></li>
+			<li{% if page.is_in_page_path %} class="current"{% endif%}><a href="{{page.guid}}">{{page.title}}</a>
 				{% if page.is_in_page_path and page.children|e %}
 					<ul>
 						{% for sub_page in page.children %}

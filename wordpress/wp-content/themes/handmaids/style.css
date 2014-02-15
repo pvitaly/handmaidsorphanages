@@ -14,7 +14,7 @@ body {
 }
 
 .wrapper {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -71,7 +71,7 @@ body {
 #navmenu li a {  /* top level links */
 	font-weight: bold;
     color: #F0F0F0;
-    padding: 10px;
+    padding: 10px 15px;
 	margin: 0px;
     display: block;
 	text-decoration: none;
@@ -135,8 +135,16 @@ body {
 
 #sidebar ul {
 	list-style-type: none;
-	margin: 0px;
-	padding: 0px;
+	margin: 0 10px 0 0;
+	padding: 0;
+}
+
+#sidebar > ul > li {
+	border-bottom: 1px solid #CCC;
+}
+
+#sidebar > ul li:last-child {
+	border-bottom: none;
 }
 
 #sidebar ul ul {
@@ -147,14 +155,11 @@ body {
 
 #sidebar li {
 	width: 100%;
+	padding: 5px 0px;
 }
 
 #sidebar li a {
 	text-decoration: none;
-}
-
-#sidebar li.current{
-
 }
 
 #sidebar + #page-content {
@@ -171,6 +176,10 @@ body {
 #main {
 	padding-top: 20px;
     clear: both;
+}
+
+#carousel-div {
+	margin-bottom: 10px;
 }
 
 .row {
