@@ -68,13 +68,18 @@ body {
 	float: left;
 }
 
-#navmenu li a {  /* top level links */
+#navmenu li a {  /* all menu links */
 	font-weight: bold;
     color: #F0F0F0;
     padding: 10px 15px;
 	margin: 0px;
     display: block;
 	text-decoration: none;
+}
+
+/* align the first top-level list item directly with the left side of the page content */
+#navmenu > ul > li:first-child a { 
+	padding-left: 0;
 }
 
 /* hover and current page  links */
