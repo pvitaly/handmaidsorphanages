@@ -29,7 +29,7 @@ body {
     height: 50px;
     float: left;
     display: block;
-    margin: 10px 10px 10px 0px;
+    margin: 10px 10px 10px 10px;
 }
 
 #header {
@@ -76,11 +76,6 @@ body {
 	margin: 0px;
     display: block;
 	text-decoration: none;
-}
-
-/* align the first top-level list item directly with the left side of the page content */
-#navmenu > ul > li:first-child a { 
-	padding-left: 0;
 }
 
 /* hover and current page  links */
@@ -146,7 +141,7 @@ body {
 }
 
 #sidebar > ul > li {
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #BBB;
 }
 
 #sidebar > ul li:last-child {
@@ -186,23 +181,25 @@ body {
 .page-title {
 	font-size: 20px;
 	font-weight: bold;
-	border-bottom: 1px solid #DDD;
+	border-bottom: 1px solid #BBB;
 	padding-bottom: 10px;
 	margin: 40px 0 20px;
 }
 
 .post-title {
-	font-size: 15px;
+	font-size: 13px;
 	font-weight: bold;
 	padding-bottom: 5px;
 	margin-bottom: 5px;
-	float: left;
 }
 
 .post-date {
-	float: right;
+	font-size: 15px;
+	font-weight: bold;
 	font-style: italic;
-	margin-right: 40px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #BBB;
 }
 
 .post-content {

@@ -11,13 +11,26 @@ get_header();
 // this is a request for a page so call this first to get the page content
 $pages = Timber::get_posts();
 
+$cur_page = $pages[0];
+
 //get any posts matching the category name
-$page_name = Page::get_current_page()->name;
+$page_name = $cur_page->post_name;
+
+$order = 'asc';
+
+if (property_exists($cur_page, 'post_order')){
+	$page_order = $cur_page->post_order;
+
+	if (strpos(strtolower($page_order), 'desc')  === 0 ){
+		$order = 'desc';
+	}
+}
+
 $posts = Timber::get_posts(
 	array(
 		'category_name' => $page_name,
 		'orderby' => 'date',
-		'order' => 'desc'
+		'order' => $order
 	)
 );
 
