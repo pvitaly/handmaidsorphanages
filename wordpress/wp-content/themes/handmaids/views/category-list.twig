@@ -1,0 +1,19 @@
+<div id="content">
+		{% for page in pages %}
+			<div class="content-container">
+				<div class="page-title">{{page.title}}</div>
+				<div class="page-content">
+					{{page.content}}
+				</div><!-- content-container div -->
+			</div>
+		{% endfor %}
+	
+		{% for post in posts %}
+			<div class="content-container">
+				<div class="post-title">{{post.title}}</div>
+				<div class="post-content">
+					{{post.content}}
+				</div>
+			</div>
+		{% endfor %}
+</div>

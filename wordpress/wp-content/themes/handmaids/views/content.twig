@@ -1,5 +1,10 @@
-<div id="page-content" class="row">
+<div id="content">
 	{% for post in posts %}
-		{{post.content}}
+		<div class="content-container">
+			<div class="page-title">{{post.title}}</div>
+			<div class="page-content">
+				{{post.content}}
+			</div><!-- content-container div -->
+		</div>
 	{% endfor %}
-</div><!-- content div -->
+</div>

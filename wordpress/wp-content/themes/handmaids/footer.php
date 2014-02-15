@@ -4,8 +4,8 @@
  */
 ?>
 
-		</div> <!-- main div -->
-                
+			</div> <!-- main div -->
+         </div> <!-- main-container div -->
 <?php Timber::render('footer.twig'); ?>
                 
 	</div> <!-- page div -->

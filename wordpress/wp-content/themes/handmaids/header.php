@@ -5,18 +5,16 @@
  * div id="main" section.
  */
 
- $max_menu_depth = 1;
 /**
   Renders the page menu
  */
-function build_page_menu($max_depth) {
+function build_page_menu() {
     //get a hierarchical list of all pages in the site
     $page_list = Page::get_pages();
 
     $context = array();
     $context['page_list'] = $page_list;
     Timber::render('navmenu.twig', $context);
-
 }
 ?>
 <!DOCTYPE html>
@@ -40,8 +38,9 @@ function build_page_menu($max_depth) {
 			<div class="wrapper clearfix">
 				<img class="logo" src="<?php echo get_stylesheet_directory_uri() . "/img/logo.png"; ?>"/>
 				<div id="mainTitle">Handmaids of the Blessed Trinity Orphanages</div>
-				<?php echo build_page_menu($max_menu_depth); ?>
+				<?php build_page_menu(); ?>
 			</div>
 		</div>
 
-		<div id="main" class="wrapper container">
+		<div id="main-container" class="wrapper container">
+			<div id="main">
