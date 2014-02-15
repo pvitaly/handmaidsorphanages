@@ -76,17 +76,10 @@ body {
 	text-decoration: none;
 }
 
-/* hover and current page list items */
-#navmenu li:hover,
-#navmenu li.current {
-	background-color: #48BF19;
-	color: #060606;
-}
-
 /* hover and current page  links */
 #navmenu li:hover > a,
 #navmenu li.current > a {
-	color: #060606;
+	color: #48BF19;
 }
 
 #navmenu .uparrow { /* the small uparrow div */
@@ -108,7 +101,7 @@ body {
 /* show uparrow with different color for hovered submenus */
 #navmenu li:hover > ul ~ .uparrow {
 	visibility: visible;
-	border-bottom: 5px solid #555;
+	border-bottom: 5px solid #444;
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
 }
@@ -129,10 +122,6 @@ body {
 #navmenu ul ul li { /* submenu list items */
 	float: none;
 	background-color: #444;
-}
-
-#navmenu ul ul li:hover { /* submenu hovered list items */
-	background-color: #666;
 }
 
 /************************************ Sidebar ***********************************/
