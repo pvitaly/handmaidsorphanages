@@ -140,20 +140,42 @@ body {
 
 /************************************ Sidebar ***********************************/
 
+#sidebar > ul .current  > a
+{
+	text-decoration:underline;
+	
+}
+
+#sidebar .current .current a
+{
+	text-decoration:underline;
+}
 
 #sidebar {
 	float: left;
 	width: 15%;
+	background-color: black;
+	color: white;
+	height: auto;
 }
 
 #sidebar ul {
 	list-style-type: none;
 	margin: 0 10px 0 0;
 	padding: 0;
+	
 }
+#sidebar > ul  a{
+	color: #48BF19;
+}
+#sidebar > ul  a:hover{
+	color: white;
+}
+
 
 #sidebar > ul > li {
 	border-bottom: 1px solid #BBB;
+	padding: 5px;
 }
 
 #sidebar > ul li:last-child {

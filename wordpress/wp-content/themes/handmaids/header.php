@@ -45,6 +45,7 @@ function build_page_menu() {
 				$('body,html').animate({scrollTop:0},800);
 			});	
 		});
+		
 	</script>
 </head>
 <body <?php body_class() ?> >
