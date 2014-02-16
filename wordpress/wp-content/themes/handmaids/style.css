@@ -8,11 +8,22 @@ Version: 1.0
 body {
     margin: 0px;
     background-color: #F0F0F0;
+	margin-bottom: 50px;
 }
 #page {
     font-family: sans-serif;
 }
-
+#footer
+{
+	color: white;
+	text-align: center;
+	background-color: #060606;
+    width: 50%;
+	height: 50px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	clear: right;
+}
 .wrapper {
     max-width: 900px;
     margin: 0 auto;
@@ -50,6 +61,7 @@ body {
 /******************************* Nav Menu ********************************/
 
 #navmenu { /* nav menu div */
+	
 	width: 100%;
 	margin: 0;
 	padding: 0;
@@ -240,6 +252,37 @@ body {
 .carousel-control .icon-prev, .carousel-control .glyphicon-chevron-left {
     left: 20%;
 }
+#backtotop {
+	cursor : pointer;
+	display : none;
+	margin : 0px 0px 0px 0px;
+	position : fixed;
+	bottom : 10px;
+	font-size : 90%;
+	padding	: 10px;
+	width : 100px;
+	text-align : center;
+	background-color : #000;
+	border-radius : 8px;
+	-webkit-border-radius : 8px;
+	-moz-border-radius : 8px;
+	filter : alpha(opacity=60);
+	-khtml-opacity : 0.6;
+	-moz-opacity : 0.6;
+	opacity	: 0.6;
+	color : #FFF;
+	font-size : 14px;
+	z-index	: 1000;
+	clear: left;
+}
+#backtotop:hover
+{
+	filter : alpha(opacity=90);
+	-khtml-opacity : 0.9;
+	-moz-opacity : 0.9;
+	opacity	: 0.9;
+}
+
 /*@media (min-width : 1200px) {
     #page-content {
         width: 900px;

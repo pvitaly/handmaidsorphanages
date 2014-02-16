@@ -1,0 +1,16 @@
+
+Copyright Information
+---------------------
+
+TUTORIAL 3: Create an animated 'scroll to top' button using CSS and jQuery! - Posted by: Simon Clements
+
+All imagery created by Blue Bot Design within these tutorials are owned or controlled for these purposes by Blue Bot Design. In accessing Blue Bot Design's tutorials, you agree that you may only download the images within for your own personal non-commercial use.
+
+Except where expressly stated otherwise, you are not permitted to copy, broadcast, download, store (in any medium), transmit, show or play in public, adapt or change in any way images belonging to Blue Bot Design for any other purpose whatsoever without the prior written permission of the Blue Bot Design.
+
+For additional information or to request permission to use the imagery contained within this tutorial please contact us.
+
+simon@bluebotdesign.com
+www.bluebotdesign.com 
+
+ENJOY!

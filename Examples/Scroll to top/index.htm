@@ -1,0 +1,157 @@
+<!-- 
+
+Copyright Information
+---------------------
+
+TUTORIAL 3: Create an animated 'scroll to top' button using CSS and jQuery! - Posted by: Simon Clements
+
+All imagery created by Blue Bot Design within these tutorials are owned or controlled for these purposes by Blue Bot Design. In accessing Blue Bot Design's tutorials, you agree that you may only download the images within for your own personal non-commercial use.
+
+Except where expressly stated otherwise, you are not permitted to copy, broadcast, download, store (in any medium), transmit, show or play in public, adapt or change in any way images belonging to Blue Bot Design for any other purpose whatsoever without the prior written permission of the Blue Bot Design.
+
+For additional information or to request permission to use the imagery contained within this tutorial please contact us.
+
+simon@bluebotdesign.com
+www.bluebotdesign.com 
+
+ENJOY!
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Blue Bot Design Tutorials | Create an animated 'scroll to top' button using CSS and jQuery!</title>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />	
+ 
+<link rel="shortcut icon" href="http://bluebotdesign.com/favicon.ico" type="image/x-icon">
+<link rel="icon" href="http://bluebotdesign.com/favicon.ico" type="image/x-icon">
+
+
+<style type="text/css" charset="utf-8" media="screen">
+
+html, body{
+	font-family : Tahoma, Arial, Helvetica, sans-serif;
+	font-size : 16px;
+	color : #333;
+	height : 100%;
+	text-align : center;
+	background : #888;
+}
+
+#content{
+	margin : 20px auto 20px auto;
+	padding	: 20px;
+	border : 1px solid #333;
+	width : 900px;
+	height	: auto;
+	background : #FFF;
+	position : relative;
+	text-align : left;
+}
+
+p{
+	margin : 0px 0px 0px 0px;
+	padding	: 5px 0px 10px 0px;
+	line-height : 1.6em;
+}
+
+h1{
+	margin : 0px 0px 0px 0px;
+	padding	: 5px 0px 10px 0px;
+	font-size : 30px;
+	font-weight : normal;
+}
+
+#backtotop {
+	cursor : pointer;
+	display : none;
+	margin : 0px 0px 0px 370px;
+	position : fixed;
+	bottom : 10px;
+	font-size : 90%;
+	padding	: 10px;
+	width : 100px;
+	text-align : center;
+	background-color : #000;
+	border-radius : 8px;
+	-webkit-border-radius : 8px;
+	-moz-border-radius : 8px;
+	filter : alpha(opacity=60);
+	-khtml-opacity : 0.6;
+	-moz-opacity : 0.6;
+	opacity	: 0.6;
+	color : #FFF;
+	font-size : 14px;
+	z-index	: 1000;
+}
+#backtotop:hover
+{
+	filter : alpha(opacity=90);
+	-khtml-opacity : 0.9;
+	-moz-opacity : 0.9;
+	opacity	: 0.9;
+}
+</style>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function() {
+	$(window).scroll(function() {
+		if($(this).scrollTop() != 0) {
+			$('#backtotop').fadeIn();	
+		} else {
+			$('#backtotop').fadeOut();
+		}
+	});
+ 
+	$('#backtotop').click(function() {
+		$('body,html').animate({scrollTop:0},800);
+	});	
+});
+</script>
+
+
+</head>
+
+<body>
+
+	<div id="content">	
+
+		<h1>Demo of the animated 'scroll to top' button using CSS and jQuery!</h1>
+
+		<p>Below is some dummy text so that you can see the 'scroll to top' button in action.</p>
+		
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id lectus consequat nunc egestas consectetur. Ut libero elit, auctor eget posuere tempus, interdum quis ligula. Curabitur vulputate pulvinar erat, eu semper nisl faucibus et. Curabitur vehicula, metus a consectetur bibendum, nunc augue tempus odio, vitae cursus sapien urna quis sem. Sed quis ornare magna. Cras massa purus, consequat ut gravida nec, ultricies nec lorem? Nullam enim diam, interdum a vulputate et, aliquam in tellus. Sed quis elit et sapien feugiat scelerisque non sit amet lectus. Cras cursus dignissim pulvinar. Curabitur nec erat sit amet neque varius malesuada. Pellentesque velit lacus, faucibus non faucibus at, pharetra ut lectus. Sed non ipsum in magna viverra vestibulum varius sed nunc. Vivamus ut tellus nibh, ac eleifend lacus?</p>
+		
+		<p>Aenean congue nisl eu lacus auctor vitae sollicitudin velit malesuada. Suspendisse vestibulum ullamcorper egestas. Quisque mollis auctor eros, vel semper magna tempor ac. Sed eu odio eu sapien molestie sagittis a ut est. Sed tempor augue at ipsum dapibus tempor. Phasellus sit amet justo ut tellus tristique fringilla! Duis adipiscing eros quis erat vulputate non porttitor augue viverra. Aliquam tincidunt, massa id consectetur vulputate, lacus libero eleifend mauris, ut cursus odio enim ac libero. Duis rutrum lobortis dui convallis aliquet. Sed gravida condimentum purus eu gravida. Sed convallis facilisis placerat. Cras ut mauris a nunc sagittis volutpat eget et magna. Morbi sit amet nibh cursus mi pretium laoreet. Nulla vitae augue ligula.</p>
+		
+		<p>Nulla at ligula eu lacus congue congue eget et dui. Sed odio tortor, iaculis ac consequat eu, consectetur sit amet elit. Curabitur malesuada vestibulum augue, ultrices gravida nunc ultricies ultricies. Ut accumsan orci nibh, a adipiscing quam. In ac cursus libero! Morbi elementum, arcu a laoreet facilisis, lorem elit molestie nunc, in pulvinar neque lectus eu urna. Nulla facilisi. Quisque euismod pharetra dictum.</p>
+		
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id lectus consequat nunc egestas consectetur. Ut libero elit, auctor eget posuere tempus, interdum quis ligula. Curabitur vulputate pulvinar erat, eu semper nisl faucibus et. Curabitur vehicula, metus a consectetur bibendum, nunc augue tempus odio, vitae cursus sapien urna quis sem. Sed quis ornare magna. Cras massa purus, consequat ut gravida nec, ultricies nec lorem? Nullam enim diam, interdum a vulputate et, aliquam in tellus. Sed quis elit et sapien feugiat scelerisque non sit amet lectus. Cras cursus dignissim pulvinar. Curabitur nec erat sit amet neque varius malesuada. Pellentesque velit lacus, faucibus non faucibus at, pharetra ut lectus. Sed non ipsum in magna viverra vestibulum varius sed nunc. Vivamus ut tellus nibh, ac eleifend lacus?</p>
+		
+		<p>Aenean congue nisl eu lacus auctor vitae sollicitudin velit malesuada. Suspendisse vestibulum ullamcorper egestas. Quisque mollis auctor eros, vel semper magna tempor ac. Sed eu odio eu sapien molestie sagittis a ut est. Sed tempor augue at ipsum dapibus tempor. Phasellus sit amet justo ut tellus tristique fringilla! Duis adipiscing eros quis erat vulputate non porttitor augue viverra. Aliquam tincidunt, massa id consectetur vulputate, lacus libero eleifend mauris, ut cursus odio enim ac libero. Duis rutrum lobortis dui convallis aliquet. Sed gravida condimentum purus eu gravida. Sed convallis facilisis placerat. Cras ut mauris a nunc sagittis volutpat eget et magna. Morbi sit amet nibh cursus mi pretium laoreet. Nulla vitae augue ligula.</p>
+		
+		<p>Nulla at ligula eu lacus congue congue eget et dui. Sed odio tortor, iaculis ac consequat eu, consectetur sit amet elit. Curabitur malesuada vestibulum augue, ultrices gravida nunc ultricies ultricies. Ut accumsan orci nibh, a adipiscing quam. In ac cursus libero! Morbi elementum, arcu a laoreet facilisis, lorem elit molestie nunc, in pulvinar neque lectus eu urna. Nulla facilisi. Quisque euismod pharetra dictum.</p>
+		
+		<p>Nulla at ligula eu lacus congue congue eget et dui. Sed odio tortor, iaculis ac consequat eu, consectetur sit amet elit. Curabitur malesuada vestibulum augue, ultrices gravida nunc ultricies ultricies. Ut accumsan orci nibh, a adipiscing quam. In ac cursus libero! Morbi elementum, arcu a laoreet facilisis, lorem elit molestie nunc, in pulvinar neque lectus eu urna. Nulla facilisi. Quisque euismod pharetra dictum.</p>
+		
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id lectus consequat nunc egestas consectetur. Ut libero elit, auctor eget posuere tempus, interdum quis ligula. Curabitur vulputate pulvinar erat, eu semper nisl faucibus et. Curabitur vehicula, metus a consectetur bibendum, nunc augue tempus odio, vitae cursus sapien urna quis sem. Sed quis ornare magna. Cras massa purus, consequat ut gravida nec, ultricies nec lorem? Nullam enim diam, interdum a vulputate et, aliquam in tellus. Sed quis elit et sapien feugiat scelerisque non sit amet lectus. Cras cursus dignissim pulvinar. Curabitur nec erat sit amet neque varius malesuada. Pellentesque velit lacus, faucibus non faucibus at, pharetra ut lectus. Sed non ipsum in magna viverra vestibulum varius sed nunc. Vivamus ut tellus nibh, ac eleifend lacus?</p>
+		
+		<p>Aenean congue nisl eu lacus auctor vitae sollicitudin velit malesuada. Suspendisse vestibulum ullamcorper egestas. Quisque mollis auctor eros, vel semper magna tempor ac. Sed eu odio eu sapien molestie sagittis a ut est. Sed tempor augue at ipsum dapibus tempor. Phasellus sit amet justo ut tellus tristique fringilla! Duis adipiscing eros quis erat vulputate non porttitor augue viverra. Aliquam tincidunt, massa id consectetur vulputate, lacus libero eleifend mauris, ut cursus odio enim ac libero. Duis rutrum lobortis dui convallis aliquet. Sed gravida condimentum purus eu gravida. Sed convallis facilisis placerat. Cras ut mauris a nunc sagittis volutpat eget et magna. Morbi sit amet nibh cursus mi pretium laoreet. Nulla vitae augue ligula.</p>
+		
+		<p>Nulla at ligula eu lacus congue congue eget et dui. Sed odio tortor, iaculis ac consequat eu, consectetur sit amet elit. Curabitur malesuada vestibulum augue, ultrices gravida nunc ultricies ultricies. Ut accumsan orci nibh, a adipiscing quam. In ac cursus libero! Morbi elementum, arcu a laoreet facilisis, lorem elit molestie nunc, in pulvinar neque lectus eu urna. Nulla facilisi. Quisque euismod pharetra dictum.</p>
+		
+		<div id="backtotop">Scroll to Top</div>
+
+		
+  	</div>
+  
+
+</body>
+</html>

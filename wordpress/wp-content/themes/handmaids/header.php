@@ -31,6 +31,21 @@ function build_page_menu() {
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo wp_title( '|', false, 'right' ), get_bloginfo('name'); ?></title>
 	<?php wp_head(); ?>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>	<script type="text/javascript">
+		$(function() {
+			$(window).scroll(function() {
+				if($(this).scrollTop() != 0) {
+					$('#backtotop').fadeIn();	
+				} else {
+					$('#backtotop').fadeOut();
+				}
+			});
+		 
+			$('#backtotop').click(function() {
+				$('body,html').animate({scrollTop:0},800);
+			});	
+		});
+	</script>
 </head>
 <body <?php body_class() ?> >
 	<div id="page">
