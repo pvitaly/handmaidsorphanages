@@ -4,7 +4,7 @@ Plugin Name: Contact Form
 Plugin URI:  http://bestwebsoft.com/plugin/
 Description: Plugin for Contact Form.
 Author: BestWebSoft
-Version: 3.71
+Version: 3.72
 Author URI: http://bestwebsoft.com/
 License: GPLv2 or later
 */
@@ -103,7 +103,8 @@ if( ! function_exists( 'cntctfrm_settings' ) ) {
 			'cntctfrm_thank_text' 				=> array( 'en' => __( "Thank you for contacting us.", 'contact_form' ) ),
 			'cntctfrm_redirect_url'				=> '',
 			'cntctfrm_delete_attached_file'		=> '0',
-			'cntctfrm_html_email'				=> 1
+			'cntctfrm_html_email'				=> 1,
+			'cntctfrm_site_name_parameter'		=> 'SERVER_NAME'
 		);
 
 		/* Install the option defaults */
@@ -226,7 +227,7 @@ if( ! function_exists( 'cntctfrm_settings_page' ) ) {
 
 		$error = "";	
 		/* Save data for settings page */
-		if( isset( $_POST['cntctfrm_form_submit'] ) && check_admin_referer( plugin_basename(__FILE__), 'cntctfrm_nonce_name' ) ) {
+		if ( isset( $_POST['cntctfrm_form_submit'] ) && check_admin_referer( plugin_basename(__FILE__), 'cntctfrm_nonce_name' ) ) {
 			$cntctfrm_options_submit['cntctfrm_user_email'] = $_POST['cntctfrm_user_email'];
 			$cntctfrm_options_submit['cntctfrm_custom_email'] = stripslashes( $_POST['cntctfrm_custom_email'] );
 			$cntctfrm_options_submit['cntctfrm_select_email'] = $_POST['cntctfrm_select_email'];
@@ -259,6 +260,7 @@ if( ! function_exists( 'cntctfrm_settings_page' ) ) {
 				$cntctfrm_options_submit['cntctfrm_action_after_send']			= 1;
 				$cntctfrm_options_submit['cntctfrm_delete_attached_file']		= 0;
 				$cntctfrm_options_submit['cntctfrm_html_email']					= 1;
+				$cntctfrm_options_submit['cntctfrm_site_name_parameter']		= 'SERVER_NAME';
 				if ( empty( $cntctfrm_options['cntctfrm_language'] ) ) {
 					$cntctfrm_options_submit['cntctfrm_name_label']					= $cntctfrm_option_defaults['cntctfrm_name_label'];
 					$cntctfrm_options_submit['cntctfrm_address_label']				= $cntctfrm_option_defaults['cntctfrm_address_label'];
@@ -383,10 +385,10 @@ if( ! function_exists( 'cntctfrm_settings_page' ) ) {
 				$cntctfrm_options_submit['cntctfrm_required_message_field']		= isset( $_POST['cntctfrm_required_message_field']) ? 1 : 0;
 
 				$cntctfrm_options_submit['cntctfrm_required_symbol']			= isset( $_POST['cntctfrm_required_symbol']) ? $_POST['cntctfrm_required_symbol'] : '*';
-				
 				$cntctfrm_options_submit['cntctfrm_html_email'] = isset( $_POST['cntctfrm_html_email']) ? 1 : 0;
+				$cntctfrm_options_submit['cntctfrm_site_name_parameter'] = $_POST['cntctfrm_site_name_parameter'];
+				$cntctfrm_options_submit['cntctfrm_display_add_info']			= isset( $_POST['cntctfrm_display_add_info']) ? 1 : 0;	
 
-				$cntctfrm_options_submit['cntctfrm_display_add_info']			= isset( $_POST['cntctfrm_display_add_info']) ? 1 : 0;				
 				if ( 1 == $cntctfrm_options_submit['cntctfrm_display_add_info'] ) {
 					$cntctfrm_options_submit['cntctfrm_display_sent_from']		= isset( $_POST['cntctfrm_display_sent_from']) ? 1 : 0;
 					$cntctfrm_options_submit['cntctfrm_display_date_time']		= isset( $_POST['cntctfrm_display_date_time']) ? 1 : 0;
@@ -400,6 +402,7 @@ if( ! function_exists( 'cntctfrm_settings_page' ) ) {
 				}
 
 				$cntctfrm_options_submit['cntctfrm_change_label']				= isset( $_POST['cntctfrm_change_label']) ? 1 : 0;
+
 				if ( 1 == $cntctfrm_options_submit['cntctfrm_change_label'] ) {
 					foreach ( $_POST['cntctfrm_name_label'] as $key => $val ){
 						$cntctfrm_options_submit['cntctfrm_name_label'][ $key ]					= stripcslashes( htmlspecialchars( $_POST['cntctfrm_name_label'][ $key ] ) );
@@ -1061,6 +1064,15 @@ if( ! function_exists( 'cntctfrm_settings_page' ) ) {
 								<input type="radio" id="cntctfrm_action_after_send_url" name="cntctfrm_action_after_send" value="0" <?php if ( '0' == $cntctfrm_options['cntctfrm_action_after_send'] ) echo "checked=\"checked\" "; ?>/> <?php _e( "Redirect to the page", 'contact_form' ); ?><br />
 								<input type="text" name="cntctfrm_redirect_url" value="<?php echo $cntctfrm_options['cntctfrm_redirect_url']; ?>" onfocus="document.getElementById('cntctfrm_action_after_send_url').checked = true;" /> <span class="cntctfrm_info"><?php _e( "Url", 'contact_form' ); ?></span>
 							</td>
+						</tr>
+						<tr valign="top" class="cntctfrm_additions_block <?php if ( '0' == $cntctfrm_options['cntctfrm_additions_options'] ) echo "cntctfrm_hidden"; ?>">
+							<th scope="row" style="width:200px;"><?php _e( 'The $_SERVER variable that is used to build a URL of the form', 'contact_form' ); ?></th>
+							<td colspan="2">
+								<label><input type="radio" name="cntctfrm_site_name_parameter" value="HTTP_HOST" <?php if ( 'SERVER_NAME' == $cntctfrm_options['cntctfrm_site_name_parameter'] ) echo "checked=\"checked\" "; ?>/> SERVER_NAME</label><br />
+								<label><input type="radio" name="cntctfrm_site_name_parameter" value="HTTP_HOST" <?php if ( 'HTTP_HOST' == $cntctfrm_options['cntctfrm_site_name_parameter'] ) echo "checked=\"checked\" "; ?>/> HTTP_HOST</label><br />
+								<span class="cntctfrm_info"><?php _e( "If you are not sure whether to change this setting or not, please do not do that.", 'contact_form' ); ?></span>
+							</td>
+						</tr>
 					</table>    
 					<input type="hidden" name="cntctfrm_form_submit" value="submit" />
 					<p class="submit">
@@ -1407,9 +1419,9 @@ if( ! function_exists( 'cntctfrm_display_form' ) ) {
 		$content = "";
 
 		if ( '80' != $_SERVER["SERVER_PORT"] )
-            $page_url = $page_url = ( isset( $_SERVER["HTTPS"] ) && $_SERVER["HTTPS"] == "on" ? "https://" : "http://" ).$_SERVER["SERVER_NAME"].':'. $_SERVER["SERVER_PORT"].strip_tags( $_SERVER["REQUEST_URI"] );
+            $page_url = $page_url = ( isset( $_SERVER["HTTPS"] ) && $_SERVER["HTTPS"] == "on" ? "https://" : "http://" ) . $_SERVER[ $cntctfrm_options['cntctfrm_site_name_parameter'] ].':'. $_SERVER["SERVER_PORT"].strip_tags( $_SERVER["REQUEST_URI"] );
 		else
-            $page_url = ( isset( $_SERVER["HTTPS"] ) && $_SERVER["HTTPS"] == "on" ? "https://" : "http://" ) . $_SERVER["SERVER_NAME"] . strip_tags( $_SERVER["REQUEST_URI"] );
+            $page_url = ( isset( $_SERVER["HTTPS"] ) && $_SERVER["HTTPS"] == "on" ? "https://" : "http://" ) . $_SERVER[ $cntctfrm_options['cntctfrm_site_name_parameter'] ] . strip_tags( $_SERVER["REQUEST_URI"] );
 
 		/* If contact form submited */
 		$name = isset( $_POST['cntctfrm_contact_name'] ) ? htmlspecialchars( stripslashes( $_POST['cntctfrm_contact_name'] ) ) : "";
@@ -1741,6 +1753,7 @@ if( ! function_exists( 'cntctfrm_send_mail' ) ) {
 	function cntctfrm_send_mail() {
 		global $cntctfrm_options, $path_of_uploaded_file, $wp_version;
 		$to = "";
+		$headers  = "";
 
 		$name = isset( $_POST['cntctfrm_contact_name'] ) ? $_POST['cntctfrm_contact_name'] : "";
 		$address = isset( $_POST['cntctfrm_contact_address'] ) ? $_POST['cntctfrm_contact_address'] : "";
@@ -1776,7 +1789,6 @@ if( ! function_exists( 'cntctfrm_send_mail' ) ) {
 			$userdomain = '';
 			$form_action_url = '';
 			$attachments = array();
-			$headers  = "";
 
 			if ( 'on' == getenv('HTTPS') ) {
 				$form_action_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -1874,9 +1886,10 @@ if( ! function_exists( 'cntctfrm_send_mail' ) ) {
 
 			do_action( 'cntctfrm_get_mail_data', $to, $name, $email, $address, $phone, $subject, $message, $form_action_url, $user_agent, $userdomain );
 
+			$headers  .= 'MIME-Version: 1.0' . "\n";
+			
 			if ( 'wp-mail' == $cntctfrm_options['cntctfrm_mail_method'] ) {
 				/* To send HTML mail, the Content-type header must be set */
-				$headers  = 'MIME-Version: 1.0' . "\n";
 				if ( 1 == $cntctfrm_options['cntctfrm_html_email'] )
 					$headers .= 'Content-type: text/html; charset=utf-8' . "\n";
 				else
@@ -1905,7 +1918,6 @@ if( ! function_exists( 'cntctfrm_send_mail' ) ) {
 			} else {
 				if ( 1 == $cntctfrm_options['cntctfrm_attachment'] && isset( $_FILES["cntctfrm_contact_attachment"]["tmp_name"] ) && "" != $_FILES["cntctfrm_contact_attachment"]["tmp_name"] ) {
 					global $path_of_uploaded_file;
-					$headers  = "";
 					$message_block = $message_text;
 
 					if ( 'custom' == $cntctfrm_options['cntctfrm_select_from_field'] )
@@ -1926,8 +1938,7 @@ if( ! function_exists( 'cntctfrm_send_mail' ) ) {
 
 					$bound_last = 	"--" . $bound_text . "--";
 
-					$headers .= "MIME-Version: 1.0\n" . 
-						"Content-Type: multipart/mixed; boundary=\"$bound_text\"";
+					$headers .= "Content-Type: multipart/mixed; boundary=\"$bound_text\"";
 
 					$message_text = 	__( "If you can see this MIME, it means that the MIME type is not supported by your email client!", "contact_form" ) . "\n";
 
@@ -1946,13 +1957,11 @@ if( ! function_exists( 'cntctfrm_send_mail' ) ) {
 					"Content-Transfer-Encoding: base64\n\n" . chunk_split( base64_encode( $file ) ) . "\n\n";
 						$message_text .= $bound_last;
 				} else {
-					/* To send HTML mail, the Content-type header must be set */
-					$headers  = 'MIME-Version: 1.0' . "\n";
+					/* To send HTML mail, header must be set */
 					if ( 1 == $cntctfrm_options['cntctfrm_html_email'] )
 						$headers .= 'Content-type: text/html; charset=utf-8' . "\n";
 					else
 						$headers .= 'Content-type: text/plain; charset=utf-8' . "\n";
-
 
 					if ( 'custom' == $cntctfrm_options['cntctfrm_select_from_field'] )
 						$from_field_name = stripslashes( $cntctfrm_options['cntctfrm_from_field'] );
@@ -1960,7 +1969,7 @@ if( ! function_exists( 'cntctfrm_send_mail' ) ) {
 						$from_field_name = $name;
 
 					/* Additional headers */
-					if( 'custom' == $cntctfrm_options['cntctfrm_from_email'] )
+					if ( 'custom' == $cntctfrm_options['cntctfrm_from_email'] )
 						$headers .= 'From: ' . $from_field_name . ' <' . stripslashes( $cntctfrm_options['cntctfrm_custom_from_email'] ) . '>' . "\n";
 					else
 						$headers .= 'From: ' . $from_field_name . ' <' . $email . '>' . "\n";
@@ -1968,7 +1977,7 @@ if( ! function_exists( 'cntctfrm_send_mail' ) ) {
 				if ( isset( $_POST['cntctfrm_contact_send_copy'] ) && 1 == $_POST['cntctfrm_contact_send_copy'] )
 					@mail( $email, $subject, $message_text_for_user, $headers );
 
-				$mail_result = @mail( $to, $subject , $message_text, $headers);
+				$mail_result = @mail( $to, $subject , $message_text, $headers );
 				/* Delete attachment */
 				if ( 1 == $cntctfrm_options['cntctfrm_attachment'] && isset( $_FILES["cntctfrm_contact_attachment"]["tmp_name"] ) && "" != $_FILES["cntctfrm_contact_attachment"]["tmp_name"] && '1' == $cntctfrm_options['cntctfrm_delete_attached_file'] ) {
 					@unlink( $path_of_uploaded_file );	
@@ -2209,27 +2218,27 @@ if ( ! function_exists ( 'cntctfrm_plugin_banner' ) ) {
 									});
 								});
 							})(jQuery);				
-						</script>					                      
-						<div class="cntctfrm_message">
-							<img class="cntctfrm_close_icon" title="" src="' . plugins_url( 'images/close_banner.png', __FILE__ ) . '" alt=""/>
-							<img class="cntctfrm_icon" title="" src="' . plugins_url( 'images/banner.png', __FILE__ ) . '" alt=""/>
-							<div class="cntctfrm_text">
-								It’s time to upgrade your <strong>Contact Form plugin</strong> to <strong>PRO</strong> version!<br />
-								<span>Extend standard plugin functionality with new great options.</span>
-							</div> 
-							<a class="button cntctfrm_button" target="_blank" href="http://bestwebsoft.com/plugin/contact-form-pro/?k=f575dc39cba54a9de88df346eed52101&pn=77&v=' . $plugin_info["Version"] . '&wp_v=' . $wp_version . '">Learn More</a>		
-						</div>';										
+						</script>
+						<div class="cntctfrm_message bws_banner_on_plugin_page">
+							<a class="button" target="_blank" href="http://bestwebsoft.com/plugin/contact-form-pro/?k=f575dc39cba54a9de88df346eed52101&pn=77&v=' . $plugin_info["Version"] . '&wp_v=' . $wp_version . '">Learn More</a>		
+							<div class="text">
+								' . __( "It’s time to upgrade your <strong>Contact Form plugin</strong> to <strong>PRO</strong> version", 'contact_form' ) . '!<br />
+								<span>' . __( "Extend standard plugin functionality with new great options.", 'contact_form' ) . '</span>
+							</div>
+							<img class="cntctfrm_close_icon close_icon" title="" src="' . plugins_url( 'images/close_banner.png', __FILE__ ) . '" alt=""/>
+							<img class="icon" title="" src="' . plugins_url( 'images/banner.png', __FILE__ ) . '" alt=""/>
+						</div>';	
 						if ( ! array_key_exists( 'contact-form-to-db/contact_form_to_db.php', $all_plugins ) && ! array_key_exists( 'contact-form-to-db-pro/contact_form_to_db_pro.php', $all_plugins ) ) {
-							echo '<div class="cntctfrm_message_for_ctfrmtdb">
-								<img class="cntctfrm_for_ctfrmtdb_close_icon" title="" src="' . plugins_url( 'images/close_banner.png', __FILE__ ) . '" alt=""/>
-								<img class="cntctfrm_icon" title="" src="' . plugins_url( 'images/banner_for_ctfrmtdb.png', __FILE__ ) . '" alt=""/>
-								<div class="cntctfrm_text">
-									<strong>Contact Form to DB</strong> allows to store your messages to the database.<br />
-									<span>Manage messages that have been sent from your website.</span>
+							echo '<div class="cntctfrm_message_for_ctfrmtdb bws_banner_on_plugin_page">
+								<a class="button" target="_blank" href="http://bestwebsoft.com/plugin/contact-form-to-db-pro/?k=6ebf0743736411607343ad391dc3b436&pn=77&v=' . $plugin_info["Version"] . '&wp_v=' . $wp_version . '">Learn More</a>		
+								<div class="text">
+									' . __( "<strong>Contact Form to DB</strong> allows to store your messages to the database.", 'contact_form' ) . '<br />
+									<span>' . __( "Manage messages that have been sent from your website.", 'contact_form' ) . '</span>
 								</div> 
-								<a class="button cntctfrm_button" target="_blank" href="http://bestwebsoft.com/plugin/contact-form-to-db-pro/?k=6ebf0743736411607343ad391dc3b436&pn=77&v=' . $plugin_info["Version"] . '&wp_v=' . $wp_version . '">Learn More</a>		
+								<img class="cntctfrm_for_ctfrmtdb_close_icon close_icon" title="" src="' . plugins_url( 'images/close_banner.png', __FILE__ ) . '" alt=""/>
+								<img class="icon" title="" src="' . plugins_url( 'images/banner_for_ctfrmtdb.png', __FILE__ ) . '" alt=""/>
 							</div>';
-						}
+						} 
 					echo '</div>'; 
 					break;
 				}
