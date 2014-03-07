@@ -1,10 +1,37 @@
-<div id="content">
+<div id="content" class="container">
+    <div class="row">
+    {% if pages|e %}
+        <div id="sidebar" class="col-xs-3 col-md-2">
+            <ul>
+		{% for page in pages %}
+                <li{% if page.is_in_page_path %} class="current"{% endif%}><a href="{{page.guid}}">{{page.title}}</a>
+				{% if page.is_in_page_path and page.children|e %}
+                    <ul>
+						{% for sub_page in page.children %}
+                        <li{% if sub_page.is_in_page_path %} class="current"{% endif %}><a href="{{sub_page.guid}}">{{sub_page.title}}</a></li>
+						{% endfor %}
+                    </ul>
+				{% endif %}
+                </li>
+		{% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+
+        {% if pages|e %}
+        <div class="content-container col-xs-9 col-md-10">
+        {% else %}
+        <div class="content-container col-xs-12 col-md-12">   
+        {% endif %}
 	{% for post in posts %}
-		<div class="content-container">
-			<div class="page-title">{{post.title}}</div>
-			<div class="page-content">
+            <div class="content-container row">
+                <div class="page-title row">{{post.title}}</div>
+                <div class="page-content row">
 				{{post.content}}
-			</div><!-- content-container div -->
-		</div>
+                </div><!-- content-container div -->
+            </div>
 	{% endfor %}
+        </div>
+    </div>
 </div>

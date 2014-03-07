@@ -244,7 +244,6 @@ td.bws_pro_version {
 }
 /* banner */ 
 .bws_banner_on_plugin_page {
-    min-width: 800px;
     border: 1px solid #d4d4d4;
     margin: 12px 0;
     background: #FFF;
@@ -252,11 +251,12 @@ td.bws_pro_version {
     overflow: hidden
 }
 .bws_banner_on_plugin_page .text {
-    color:#000;
+    color: #000;
     font-size: 15px;
     line-height: 26px;
-    margin-top: 18px;
+    margin: 18px 18px 14px;
     float: left;
+    width: 80%;
 }
 .bws_banner_on_plugin_page .text span {
     font-size: 12px;
@@ -266,7 +266,7 @@ td.bws_pro_version {
     float: left;
     border: none; 
     font-size: 14px;
-    margin: 18px 19px 18px 16px;
+    margin: 18px 0 18px 16px;
     padding: 12px 0;
     color: #FFF;
     text-shadow: none;
@@ -289,7 +289,7 @@ td.bws_pro_version {
 }
 .bws_banner_on_plugin_page .icon {
     float: right;
-    margin: 18px 0;
+    margin: 18px 8px 8px 0;
 }
 .bws_banner_on_plugin_page .close_icon {
     float: right;

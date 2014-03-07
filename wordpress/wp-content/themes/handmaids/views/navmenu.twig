@@ -1,20 +1,20 @@
 <div id="navmenu">
-	<ul class="horizontalList">
+    <ul class="horizontalList">
 	{% for page in page_list %}
-		<li {% if  page.is_in_page_path == true %} class="current" {% endif %}>
-			<a href="{{page.get_permalink}}">{{page.title}}</a>
+        <li {% if  page.is_in_page_path == true %} class="current" {% endif %}>
+            <a href="{{page.get_permalink}}">{{page.title}}</a>
 
 		{% if page.children|e %}
-			<ul class="submenu">
+            <ul class="submenu">
 				{% for child in page.children %}
-				<li><a href="{{child.get_permalink}}">{{child.title}}</a></li>
+                <li><a href="{{child.get_permalink}}">{{child.title}}</a></li>
 				{% endfor %}
-			</ul>
+            </ul>
 		{% endif %}
-		
-		<div class="uparrow"></div> 
-		
-		</li>
+
+            <div class="uparrow"></div> 
+
+        </li>
 	{% endfor %}
-	</ul>
+    </ul>
 </div>

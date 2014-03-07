@@ -4,7 +4,7 @@ Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=10
 Tags: Contact Form, text, contact, form, contacts, contact form, request, contact me, feedback form, feedback, contact button, contact form plugin, contacts form plugin, attachment, send, copy, attachment, send copy
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 3.72
+Stable tag: 3.73
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,7 +83,7 @@ We can fix some things for free for the users who provide translation of our plu
 3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" > "Contact Form".
 4. Create a page or a post and insert the shortcode [bestwebsoft_contact_form] into the text.
 
-<a href="http://bestwebsoft.com/wp-content/uploads/manual/wp_plugin/contact_form/Contact_Form-Installation_step-by-step_Instruction.pdf" target="_blank">View a PDF version of Step-by-step Instruction on Contact Form Installation</a>.
+<a href="https://docs.google.com/document/d/1obcWMPDPIIhUxcclYDwKSwNoFSHvGHyg_VKibjpQWTA/edit?pli=1" target="_blank">View a PDF version of Step-by-step Instruction on Contact Form Installation</a>.
 
 http://www.youtube.com/watch?v=fgAH8XDXtgA
 
@@ -139,7 +139,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: <a href="http://bestwebsoft.com/wp-content/uploads/manual/wp_plugin/general/System_Status.pdf" target="_blank">System_Status.pdf</a>
+4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit?pli=1" target="_blank">System_Status.pdf</a>
 
 == Screenshots ==
 
@@ -151,6 +151,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 6. Plugin extra settings in WordPress admin panel with additional fields.
 
 == Changelog ==
+
+= V3.73 - 06.03.2014 =
+* Budfix : Plugin optimization is done.
+* Update : The French language file is updated.
+* Bugfix : We fixed the bug of duplicate MIME-Version.
 
 = V3.72 - 20.02.2014 =
 * NEW : The Estonian and German language file are added.
@@ -473,6 +478,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * Ability to add Contact Form into a post. Ability to adjust displaying of the form via shortcode is added.
 
 == Upgrade Notice ==
+
+= V3.73 =
+Plugin optimization is done. The French language file is updated. We fixed the bug of duplicate MIME-Version.
 
 = V3.72 =
 The Estonian and German language file are added. Setting of choice for the form's action URL ($_SERVER['HTTP_HOST'] or $_SERVER['SERVER_NAME']).

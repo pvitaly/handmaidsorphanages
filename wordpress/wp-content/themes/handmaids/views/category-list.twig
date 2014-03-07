@@ -1,36 +1,40 @@
-{% if posts|e %}
-<div id="sidebar">
-	<ul>
+<div id="content" class="container">
+    <div class="row">
+        {% if posts|e %}
+        <div id="sidebar" class="col-xs-3 col-md-2">
+            <ul>
 	{% for post in posts %}
-		<li><a href="#{{loop.index}}">{{post.display_date}}</a></li>
+                <li><a href="#{{loop.index}}">{{post.display_date}}</a></li>
 	{% endfor %}
-	</ul>
-</div>
-{% endif %}
+            </ul>
+        </div>
+        {% endif %}
 
-
-<div id="content">
-		{% for page in pages %}
-			<div class="content-container">
-				<div class="page-title">{{page.title}}</div>
-				<div class="page-content">
+        <div class="content-container col-xs-9 col-md-10">
+            {% for page in pages %}
+            <div class="content-container row">
+                <div class="page-title row">{{page.title}}</div>
+                <div class="page-content row">
 					{{page.content}}
-				</div><!-- content-container div -->
-			</div>
-		{% endfor %}
-	
-		{% if posts|e %}
-			{% for post in posts %}
-				<div class="content-container">
-					<a name="{{loop.index}}"></a>
-					<div>
-						<div class="post-date">{{post.display_date}}</div>
-						<div class="post-title">{{post.title}}</div>
-					</div>
-					<div class="post-content">
-						{{post.content}}
-					</div>
-				</div>
-			{% endfor %}
-		{% endif %}
+                </div><!-- content-container div -->
+            </div>
+            {% endfor %}
+
+            {% if posts|e %}
+            {% for post in posts %}
+            <div class="content-container row">
+                <a name="{{loop.index}}"></a>
+                <div>
+                    <div class="post-date row">{{post.display_date}}</div>
+                    <div class="post-title row">{{post.title}}</div>
+                </div>
+                <div class="post-content row">
+                {{post.content}}
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
 </div>
