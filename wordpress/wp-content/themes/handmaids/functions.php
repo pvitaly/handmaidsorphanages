@@ -18,6 +18,7 @@ if (is_admin()){
  */ 
 function enqueue_theme_styles() {
 	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css');
+	wp_enqueue_style('content', get_template_directory_uri() . '/css/content.css');
 	wp_enqueue_style('main-style', get_stylesheet_uri());
 }
 function enqueue_theme_scripts() {
