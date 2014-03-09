@@ -21,9 +21,15 @@ fi
 
 echo "previous siteurl: $oldhost"
 
+#update the options values
 script="update wp_options set option_value = '$1' where option_name = 'siteurl'; "
 script=${script}"update wp_options set option_value = '$1' where option_name = 'home'; "
+
+#update post guids
 script=${script}"update wp_posts set guid = replace( guid, '$oldhost', '$1' ) where instr( guid, '$oldhost') = 1;"
+
+#update urls in post content
+srcipt=${script}"update wp_posts set post_content = replace( post_content,  '$oldhost', '$1') where post_content like '%$oldhost%';"
 
 mysql -h localhost -u $USER -p${PSWD} $DB -e "$script"
 
