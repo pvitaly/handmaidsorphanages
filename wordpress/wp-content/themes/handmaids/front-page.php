@@ -10,12 +10,11 @@ get_header();
 $img_list = Image::get_carousel_images();
 
 shuffle($img_list); 
-$img_context = array(
-    'img_list' => $img_list
+$context = array(
+    'img_list' => $img_list,
+	'posts' => Timber::get_posts()
 );
-Timber::render('carousel.twig', $img_context);
+Timber::render('home.twig', $context);
 
-//display the content
-get_template_part('content', 'page');
 //display the footer
 get_footer(); 

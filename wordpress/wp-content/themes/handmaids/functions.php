@@ -34,3 +34,13 @@ function enqueue_theme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_styles' );
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_scripts' );
+
+/**
+register shortcodes
+*/
+
+//shortcode for creating a section header
+function header_handler($atts, $content = null){
+	return '<div class="page-title row">' . $content . '</div>';
+}
+add_shortcode('header', 'header_handler');
