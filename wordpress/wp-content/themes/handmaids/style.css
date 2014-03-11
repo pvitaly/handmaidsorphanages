@@ -137,7 +137,6 @@ body {
 #sidebar > ul .current  > a
 {
     text-decoration:underline;
-
 }
 
 #sidebar .current .current a
@@ -147,17 +146,19 @@ body {
 
 #sidebar {
     background-color: white;
-    color: white;
     height: auto;
+}
+
+#sidebar-title {
+	font-weight: bold;
 }
 
 #sidebar ul {
     list-style-type: none;
     margin: 0 10px 0 0;
     padding: 0;
-
+	font-size: 95%;
 }
-
 
 #sidebar > ul > li {
     border-bottom: 1px solid #BBB;

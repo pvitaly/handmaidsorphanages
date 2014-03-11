@@ -96,7 +96,7 @@ class Page {
             $page_map[$page_post->ID] = $p;
 			
 			//check if this is the current page
-			if ($p->ID == $post->ID){
+			if ($post && $p->ID == $post->ID){
 				$p->is_current_page = true;
 				$p->is_in_page_path = true;
 				self::$current_page = $p;

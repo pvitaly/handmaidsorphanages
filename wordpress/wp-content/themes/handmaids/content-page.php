@@ -17,11 +17,12 @@ if ($cur_page) {
     }
 
     if ($base->has_children()) {
-//        Timber::render('sidebar.twig', array('pages' => $base->children));
+		//get the child pages
         $content_context['pages'] = $base->children;
+		
+		//get the sidebar title associated with the page; this will always be the sidebar title value of the root-level page
+		$content_context['sidebar_title'] = get_post_meta($base->ID, 'sidebar_title', true);
     }
 }
-
-
 
 Timber::render('content.twig', $content_context);
