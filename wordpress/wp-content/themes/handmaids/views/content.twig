@@ -2,16 +2,27 @@
     <div class="row">
     {% if pages|e %}
         <div id="sidebar" class="col-xs-3 col-md-2">
-			{% if sidebar_title is defined %}
-				<div id="sidebar-title">{{sidebar_title}}</div>
-			{% endif %}
             <ul>
 		{% for page in pages %}
-                <li{% if page.is_in_page_path %} class="current"{% endif%}><a href="{{page.guid}}">{{page.title}}</a>
+                <li{% if page.is_in_page_path %} class="current"{% endif%}>
+					{% if page.has_content %}
+						<a href="{{page.guid}}">{{page.title}}</a>
+					{% else %}
+						<span class="sidebar-header">{{page.title}}</span>
+					{% endif %}
+					
 				{% if page.children|e %}
                     <ul>
 						{% for sub_page in page.children %}
-                        <li{% if sub_page.is_in_page_path %} class="current"{% endif %}><a href="{{sub_page.guid}}">{{sub_page.title}}</a></li>
+                        <li{% if sub_page.is_in_page_path %} class="current"{% endif %}>
+						
+						{% if sub_page.has_content %}
+							<a href="{{sub_page.guid}}">{{sub_page.title}}</a>
+						{% else %}
+							<span class="sidebar-header">{{sub_page.title}}</span>
+						{% endif %}
+						
+						</li>
 						{% endfor %}
                     </ul>
 				{% endif %}

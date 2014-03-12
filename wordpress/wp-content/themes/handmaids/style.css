@@ -157,7 +157,7 @@ body {
     height: auto;
 }
 
-#sidebar-title {
+.sidebar-header {
 	font-weight: bold;
 }
 

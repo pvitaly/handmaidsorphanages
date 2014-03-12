@@ -2,7 +2,7 @@
 
 /**
   This is the standard template for displaying main page content
- */
+
 $content_context = array(
     'posts' => Timber::get_posts()
 );
@@ -26,3 +26,4 @@ if ($cur_page) {
 }
 
 Timber::render('content.twig', $content_context);
+ */

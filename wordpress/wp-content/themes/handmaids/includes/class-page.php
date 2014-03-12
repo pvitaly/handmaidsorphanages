@@ -11,6 +11,7 @@ class Page {
     public $guid;
     public $parent_ID;
     public $parent_page;
+	public $has_content;
     public $children = array();
 	public $is_current_page = false;
 	public $is_in_page_path = false;
@@ -25,6 +26,20 @@ class Page {
 	
 	public function has_parent(){
 		return isset($this->parent_page);
+	}
+	
+	/**
+	Returns the root ancestor of this page, i.e. the ancestor page that doesn't
+	have a parent. Will return itself if it doesn't have a parent.
+	*/
+	public function get_root(){
+		//go to the root of the page tree
+		$root = $this;
+		while ($root->has_parent()) {
+			$root = $root->parent_page;
+		}
+
+		return $root;
 	}
 
 	/************* Static Members ******************/
@@ -139,6 +154,7 @@ class Page {
         $p->title = $post->post_title;
         $p->guid = $post->guid;
         $p->parent_ID = $post->post_parent;
+		$p->has_content = strlen(trim($post->post_content)) > 0;
 
         return $p;
     }
