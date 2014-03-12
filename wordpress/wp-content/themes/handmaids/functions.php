@@ -40,7 +40,7 @@ register shortcodes
 */
 
 //shortcode for creating a section header
-function header_handler($atts, $content = null){
+function pagetitle_handler($atts, $content = null){
 	return '<div class="page-title row">' . $content . '</div>';
 }
-add_shortcode('header', 'header_handler');
+add_shortcode('pagetitle', 'pagetitle_handler');
