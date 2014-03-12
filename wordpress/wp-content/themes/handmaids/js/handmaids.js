@@ -7,10 +7,8 @@
 jQuery(document).ready(function($) {
 
     //ok to use $ jquery symbol here
-
-});
-$(function() {
-    $(window).scroll(function() {
+	
+	$(window).scroll(function() {
         if ($(this).scrollTop() != 0) {
             $('#backtotop').fadeIn();
         } else {
@@ -21,4 +19,5 @@ $(function() {
     $('#backtotop').click(function() {
         $('body,html').animate({scrollTop: 0}, 800);
     });
+
 });
