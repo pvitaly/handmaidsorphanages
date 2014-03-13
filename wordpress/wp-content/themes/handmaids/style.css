@@ -303,11 +303,8 @@ body {
 }
 .carousel-control {
     width: 5%;
-    left: 12%;
 }
-.carousel-control.right {
-    left: 83%;
-}
+
 .carousel-control.left, .carousel-control.right {
     color: white;
     background-image: none;
