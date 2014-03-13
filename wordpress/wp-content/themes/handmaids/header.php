@@ -54,7 +54,7 @@ function build_page_menu() {
 		<div id="header">
 			<div class="wrapper clearfix">
 				<img class="logo" src="<?php echo get_stylesheet_directory_uri() . "/img/logo.png"; ?>"/>
-				<div id="mainTitle">handmaids of the blessed trinity orphanages</div>
+				<div id="mainTitle"><?php echo strtolower(get_bloginfo('name')) ?></div>
 				<?php build_page_menu(); ?>
 			</div>
 		</div>
