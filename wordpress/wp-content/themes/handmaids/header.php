@@ -32,29 +32,13 @@ function build_page_menu() {
 	<title><?php echo wp_title( '|', false, 'right' ), get_bloginfo('name'); ?></title>
 	<?php wp_head(); ?>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(function() {
-			$(window).scroll(function() {
-				if($(this).scrollTop() != 0) {
-					$('#backtotop').fadeIn();	
-				} else {
-					$('#backtotop').fadeOut();
-				}
-			});
-		 
-			$('#backtotop').click(function() {
-				$('body,html').animate({scrollTop:0},800);
-			});	
-		});
-		
-	</script>
 </head>
 <body <?php body_class() ?> >
 	<div id="page">
 		<div id="header">
 			<div class="wrapper clearfix">
 				<img class="logo" src="<?php echo get_stylesheet_directory_uri() . "/img/logo.png"; ?>"/>
-				<div id="mainTitle"><?php echo strtolower(get_bloginfo('name')) ?></div>
+				<div id="mainTitle"><?php echo strtolower(get_bloginfo('name')); ?></div>
 				<?php build_page_menu(); ?>
 			</div>
 		</div>
