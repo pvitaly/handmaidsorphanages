@@ -28,6 +28,7 @@ body {
     border: 0;
     padding: 0;
 }
+
 /********************* Header  ****************************/
 .logo {
     width: 50px;
@@ -55,6 +56,43 @@ body {
 
 /******************************* Nav Menu ********************************/
 
+.center.navbar .nav,.center.navbar .nav>li {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.center .container {
+    width: 100%;
+    text-align: center;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: black;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: black;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: white;
+}
+
+.navbar-inverse {
+    background-color: #F0F0F0; 
+    border-color: #F0F0F0;  
+}
+
+.navbar-toggle {
+    float: none;
+}
+
+#fixednav li a {
+    letter-spacing: 2px;
+    color: white;
+}
+
 #navmenu { /* nav menu div */
     width: 100%;
     margin: 0;
@@ -66,21 +104,20 @@ body {
 #navmenu ul { /* top level menu list */
     position: relative;
     list-style-type: none;
-    float: left;
     margin: 0;
     padding: 0;
 }
 
-#navmenu ul > li { /* horizontal list */
+/*#navmenu ul > li {  horizontal list 
     float: left;
-}
+}*/
 
 #navmenu ul > li a {
-	border-right: 1px solid #FFF;
+    border-right: 1px solid #FFF;
 }
 
 #navmenu ul > li:last-child a {
-	border-right: none;
+    border-right: none;
 }
 
 #navmenu li a {  /* all menu links */
@@ -140,6 +177,10 @@ body {
     background-color: #444;
 }
 
+#main-container {
+    margin-top: 105px;
+}
+
 /************************************ Sidebar ***********************************/
 
 #sidebar > ul .current  > a
@@ -158,14 +199,14 @@ body {
 }
 
 .sidebar-header {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 #sidebar ul {
     list-style-type: none;
     margin: 0 10px 0 0;
     padding: 0;
-	font-size: 95%;
+    font-size: 95%;
 }
 
 #sidebar > ul > li {
@@ -201,7 +242,7 @@ body {
     float: left;
     padding: 10px;
     background-color: #FFF;
-	border: 1px solid #D1D1D1
+    border: 1px solid #D1D1D1
 }
 
 .content-container {
@@ -323,4 +364,35 @@ body {
         width: 100%;
         height: 100%;
     }
+}
+@media ( max-width : 768px) {
+    .navbar-toggle {
+        display: none;
+    }
+    .navbar-collapse.collapse {
+        display: block !important;
+    }
+    .navbar-header {
+        float: none;
+    }
+}
+@media ( max-width : 725px) {
+    #main-container {
+        margin-top: 150px;
+    }
+}
+@media ( max-width : 559px) {
+    .navbar-toggle {
+        display: inline-block;
+    }
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-header {
+        float: none;
+    }
+    #main-container {
+        margin-top: 50px;
+    }
+
 }

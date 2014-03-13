@@ -35,7 +35,7 @@ function build_page_menu() {
 <body <?php body_class() ?> >
 	<div id="page">
 		<div id="header">
-			<div class="wrapper clearfix">
+			<div class="wrapper clearfix center navbar navbar-fixed-top navbar-inverse">
 				<img class="logo" src="<?php echo get_stylesheet_directory_uri() . "/img/logo.png"; ?>"/>
 				<div id="mainTitle"><?php echo strtolower(get_bloginfo('name')); ?></div>
 				<?php build_page_menu(); ?>

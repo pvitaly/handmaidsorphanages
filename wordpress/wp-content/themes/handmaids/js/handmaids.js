@@ -7,9 +7,9 @@
 jQuery(document).ready(function($) {
 
     //ok to use $ jquery symbol here
-	
-	$(window).scroll(function() {
-        if ($(this).scrollTop() != 0) {
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() !== 0) {
             $('#backtotop').fadeIn();
         } else {
             $('#backtotop').fadeOut();
