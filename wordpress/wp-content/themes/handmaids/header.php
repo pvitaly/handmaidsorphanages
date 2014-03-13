@@ -31,7 +31,6 @@ function build_page_menu() {
 	<meta name="viewport" content="width=device-width">
 	<title><?php echo wp_title( '|', false, 'right' ), get_bloginfo('name'); ?></title>
 	<?php wp_head(); ?>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
 </head>
 <body <?php body_class() ?> >
 	<div id="page">
