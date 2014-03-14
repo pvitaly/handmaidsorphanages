@@ -276,17 +276,11 @@ body {
     margin-bottom: 10px;
 }
 
-.carousel-inner>.item>img, .carousel-inner>.item>a>img {
-    height: 400px;
-}
-
 .row {
     margin-left: auto;
     margin-right: auto;
 }
 .carousel-image {
-    width: 1000px;
-    height: 400px;
     margin-left: auto;
     margin-right: auto;
 }
