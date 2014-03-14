@@ -286,10 +286,9 @@ body {
     margin-bottom: 10px;
 }
 
-.carousel-inner {
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
     height: 400px;
 }
-
 
 .row {
     margin-left: auto;
