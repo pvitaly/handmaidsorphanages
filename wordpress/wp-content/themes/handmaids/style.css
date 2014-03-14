@@ -310,30 +310,30 @@ body {
     display : none;
     margin : 0px 0px 0px 0px;
     position : fixed;
-    top : 50%;
+    bottom : 10px;
+	right: 0px;
     font-size : 90%;
-    padding	: 10px;
-    width : 100px;
+    padding: 10px 20px;
     text-align : center;
     background-color : #000;
     border-radius : 8px;
     -webkit-border-radius : 8px;
     -moz-border-radius : 8px;
-    filter : alpha(opacity=60);
-    -khtml-opacity : 0.6;
-    -moz-opacity : 0.6;
-    opacity	: 0.6;
-    color : #FFF;
-    font-size : 14px;
-    z-index	: 1000;
+    filter : alpha(opacity=40);
+    -khtml-opacity : 0.4;
+    -moz-opacity : 0.4;
+    opacity	: 0.4;
+    color: #FFF;
+    font-size: 14px;
+    z-index: 1000;
     clear: left;
 }
 #backtotop:hover
 {
-    filter : alpha(opacity=90);
-    -khtml-opacity : 0.9;
-    -moz-opacity : 0.9;
-    opacity	: 0.9;
+    filter : alpha(opacity=970);
+    -khtml-opacity : 0.7;
+    -moz-opacity : 0.7;
+    opacity	: 0.7;
 }
 
 @media (min-width : 1200px) {
