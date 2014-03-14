@@ -39,8 +39,14 @@ add_action( 'wp_enqueue_scripts', 'enqueue_theme_scripts' );
 register shortcodes
 */
 
-//shortcode for creating a section header
+//shortcode for creating a page title
 function pagetitle_handler($atts, $content = null){
 	return '<div class="page-title row">' . $content . '</div>';
 }
 add_shortcode('pagetitle', 'pagetitle_handler');
+
+//shortcode for creating a section title
+function sectiontitle_handler($atts, $content = null){
+	return '<div class="section-title row">' . $content . '</div>';
+}
+add_shortcode('sectiontitle', 'sectiontitle_handler');

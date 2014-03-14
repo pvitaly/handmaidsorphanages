@@ -257,24 +257,14 @@ body {
     margin: 0 0 20px;
 }
 
-.post-title {
-    font-size: 13px;
+.section-title {
+	clear: both;
+	font-size: 15px;
     font-weight: bold;
+	font-style: italic;
     padding-bottom: 5px;
-    margin-bottom: 5px;
-}
-
-.post-date {
-    font-size: 15px;
-    font-weight: bold;
-    font-style: italic;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #BBB;
-}
-
-.post-content {
-    clear: both;
 }
 
 #main {
