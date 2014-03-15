@@ -25,6 +25,9 @@ echo "previous siteurl: $oldhost"
 script="update wp_options set option_value = '$1' where option_name = 'siteurl'; "
 script=${script}"update wp_options set option_value = '$1' where option_name = 'home'; "
 
+#update any other wp_options that may include the old url. this is included specifically to change the redirect url of the contact form plugin
+script=${script}"update wp_options set option_value = replace( option_value,  '$oldhost', '$1') where option_value like '%$oldhost%';"
+
 #update post guids
 script=${script}"update wp_posts set guid = replace( guid, '$oldhost', '$1' ) where instr( guid, '$oldhost') = 1;"
 
