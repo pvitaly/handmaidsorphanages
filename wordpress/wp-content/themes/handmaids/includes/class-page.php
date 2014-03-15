@@ -15,6 +15,7 @@ class Page {
     public $children = array();
 	public $is_current_page = false;
 	public $is_in_page_path = false;
+	public $is_hidden = false;
     
     public function get_permalink() {
         return get_permalink($this->ID);
@@ -125,7 +126,11 @@ class Page {
                 $parent = $page_map[$page->parent_ID];
 
                 $page->parent_page = $parent;
-                $parent->children[] = $page;
+				
+				//only add this page as a child of the parent if it's not hidden
+				if (!$page->is_hidden){
+					$parent->children[] = $page;
+				}
 				
 				if ($page->is_current_page){
 					//set all ancestor pages to be in the page path
@@ -135,7 +140,7 @@ class Page {
 							$ancestor = $ancestor->parent_page;
 					 }
 				}
-            } else { //no parent; add to list
+            } else if (!$page->is_hidden) { //no parent and not hidden; add to list as a top level element
                 $page_list[] = $page;
             }
         }
@@ -155,6 +160,7 @@ class Page {
         $p->guid = $post->guid;
         $p->parent_ID = $post->post_parent;
 		$p->has_content = strlen(trim($post->post_content)) > 0;
+		$p->is_hidden = $post->menu_order < 0;
 
         return $p;
     }
