@@ -50,3 +50,51 @@ function sectiontitle_handler($atts, $content = null){
 	return '<div class="section-title row">' . $content . '</div>';
 }
 add_shortcode('sectiontitle', 'sectiontitle_handler');
+
+
+//shortcode for google maps
+$map_count = 0;
+function googlemap_handler($atts){
+	global $map_count;
+
+	extract ( shortcode_atts ( array(
+		'lat' => 42.2733204,
+		'long' => -83.7376894,
+		'zoom' => 8,
+		'width' => -1,
+		'height' => -1
+	), $atts));
+	
+	$id = "googlemap$map_count";
+	
+	$result = '';
+	if ($map_count == 0) { //first map on the page
+		$result = '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>';
+	}
+	
+	$result .= "<div id='$id' class='googlemap' style='"; 
+				
+	if ($width > -1){
+			$result .= "width: ${width}px;";
+	} else {
+			$result .= "width: 100%;";
+	}
+	
+	if ($height > -1){
+		$result .= "height: ${height}px;";
+	} else {
+		$result .= "height: 100%;";
+	}
+	
+	
+	$result .= "'></div>";
+	$result .= "<script type='text/javascript'>function initialize_$id(){var opts = {center: new google.maps.LatLng($lat, $long), zoom: $zoom };";
+	$result .= "var map = new google.maps.Map(document.getElementById('$id'), opts);}";
+	$result .= "google.maps.event.addDomListener(window, 'load', initialize_$id);";
+	$result .= "</script>";
+	
+	$map_count++;
+	
+	return $result;
+}
+add_shortcode('googlemap', 'googlemap_handler');
