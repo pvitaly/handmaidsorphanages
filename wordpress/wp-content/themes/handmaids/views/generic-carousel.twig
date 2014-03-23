@@ -1,0 +1,27 @@
+<div id="generic-carousel-div" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+		{% for img in img_list %}
+        <li data-target="#home-carousel" data-slide-to="{{loop.index0}}" {% if loop.first %} class="active"{% endif %}></li>
+		{% endfor %}
+    </ol>
+    <div class="carousel-inner">
+
+            {% for img in img_list %}
+            {% if loop.first %}
+        <div class="item active">
+            {% else %}
+            <div class="item">
+            {% endif %}
+                <img class='carousel-image' src='{{img.guid}}'/>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <a class="left carousel-control" href="#generic-carousel-div" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#generic-carousel-div" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>

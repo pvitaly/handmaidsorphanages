@@ -1,7 +1,9 @@
 <?php
+
 /*
-A class for working with images.
-*/
+  A class for working with images.
+ */
+
 class Image {
 	
 	public static $PODS_NAME = 'media';
@@ -25,12 +27,6 @@ class Image {
 	The mime type of the post.
 	*/
 	public $post_mime_type;
-	
-	/**
-	Boolean value indicating whether or not this image should be displayed in the main
-	page image carousel.
-	*/
-	public $show_in_carousel;
 	
 	
 	/**
@@ -69,11 +65,13 @@ class Image {
 			return PodsHelper::find(__CLASS__, $params);
 	}
 	
-	public static function get_carousel_images(){
-			$params = array(
-					'where' => "show_in_carousel.meta_value = 1"
-				);
-			
-			return PodsHelper::find( __CLASS__, $params);
-	}
+	public static function get_carousel_images($carousel_name) {
+        $where = "carousel.meta_value like '%" . $carousel_name . "%'";
+
+        $params = array(
+            'where' => $where
+        );
+
+        return PodsHelper::find(__CLASS__, $params);
+    }
 }
