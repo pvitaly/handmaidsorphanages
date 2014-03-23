@@ -270,8 +270,15 @@ body {
     clear: both;
 }
 
-#generic-carousel-div {
+.float_right {
     float:right;
+}
+
+.float_left {
+    float:left;
+}
+
+#generic-carousel-div {
     padding-left: 10px;
     padding-bottom: 10px;
 }

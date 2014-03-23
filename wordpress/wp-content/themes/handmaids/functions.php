@@ -122,3 +122,15 @@ function carousel($atts) {
 }
 
 add_shortcode('carousel', 'carousel');
+
+function float_right($atts, $content = null) {
+    return '<div class="float_right">' . do_shortcode($content) . '</div>';
+}
+
+add_shortcode('right', 'float_right');
+
+function float_left($atts, $content = null) {
+    return '<div class="float_left">' . do_shortcode($content) . '</div>';
+}
+
+add_shortcode('left', 'float_left');
