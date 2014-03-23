@@ -28,6 +28,11 @@ class Image {
 	*/
 	public $post_mime_type;
 	
+	/**
+	The name of the carousel this image is included in, if any.
+	*/
+	public $carousel;
+	
 	
 	/**
 	Returns the url for the image, firing all appropriate triggers 

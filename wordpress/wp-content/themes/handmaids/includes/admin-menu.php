@@ -11,12 +11,12 @@ function my_manage_media_columns_filter($columns, $wp_list_table){
 	$pos = 4;
 
 	return array_slice($columns, 0, $pos, true) + 
-		array('show_in_carousel' => 'Show in Carousel') +
+		array('carousel' => 'Carousel') +
 		array_slice($columns, $pos, count($columns) - 1, true);
 }
 
 function my_manage_upload_sortable_columns_filter($columns){
-	$columns['show_in_carousel'] ='show_in_carousel';
+	$columns['carousel'] ='carousel';
 	
 	return $columns;
 }
@@ -24,8 +24,8 @@ function my_manage_upload_sortable_columns_filter($columns){
 function my_manage_media_custom_column($column_name, $post_id){
 	$img = Image::get_image_by_id($post_id);
 
-	if (!is_null($img) && $img->show_in_carousel == 1){
-			echo "Yes";
+	if (!is_null($img) && $img->carousel){
+			echo  $img->carousel;
 	}
 }
 
