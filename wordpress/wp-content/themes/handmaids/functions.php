@@ -60,7 +60,7 @@ add_shortcode('sectiontitle', 'sectiontitle_handler');
 //shortcode for google maps
 $map_count = 0;
 
-function googlemap_handler($atts) {
+function googlemap_handler($atts, $content = null) {
     global $map_count;
 
     extract(shortcode_atts(array(
@@ -95,16 +95,41 @@ function googlemap_handler($atts) {
 
     $result .= "'></div>";
     $result .= "<script type='text/javascript'>function initialize_$id(){var opts = {center: new google.maps.LatLng($lat, $long), zoom: $zoom };";
-    $result .= "var map = new google.maps.Map(document.getElementById('$id'), opts);}";
-    $result .= "google.maps.event.addDomListener(window, 'load', initialize_$id);";
+    $result .= "var $id = new google.maps.Map(document.getElementById('$id'), opts);";
+	
+	//call do_shortcodes on the content to place any markers
+	if ($content){
+		preg_match_all('/(\[.*?\])/', $content, $shortcodes, PREG_PATTERN_ORDER); //pull out all of the internal shortcodes
+		if ($shortcodes[0]){
+			foreach ($shortcodes[0] as $shortcode){
+				$result .= do_shortcode($shortcode);
+			}
+		}
+	}
+	
+    $result .= "}; google.maps.event.addDomListener(window, 'load', initialize_$id);";
     $result .= "</script>";
 
+	//increment the map count for the next map
     $map_count++;
 
     return $result;
 }
-
 add_shortcode('googlemap', 'googlemap_handler');
+
+function map_marker_handler($atts){
+	global $map_count;
+
+	extract(shortcode_atts(array(
+        'lat' => 0,
+        'long' => 0,
+        'title' => ''), $atts));
+		
+	$id = "googlemap$map_count";
+		
+	return "new google.maps.Marker({ position: new google.maps.LatLng($lat, $long), map: $id, title : '$title'});";
+}
+add_shortcode('marker', 'map_marker_handler');
 
 function carousel($atts) {
 
