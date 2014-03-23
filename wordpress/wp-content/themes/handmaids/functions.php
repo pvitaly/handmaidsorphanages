@@ -42,6 +42,25 @@ add_action('wp_enqueue_scripts', 'enqueue_theme_scripts');
 /**
   register shortcodes
  */
+ 
+ // executes nested shortcodes, ignoring other content
+ function do_nested_shortcodes($content = null){
+	$result = '';
+	
+	if ($content){
+		$shortcodes = array();
+
+		preg_match_all('/(\[.*?\])/', $content, $shortcodes, PREG_PATTERN_ORDER); //pull out all of the internal shortcodes
+		if ($shortcodes[0]){
+			foreach ($shortcodes[0] as $shortcode){
+				$result .= do_shortcode($shortcode);
+			}
+		}
+	}
+	
+	return $result;
+ }
+ 
 //shortcode for creating a page title
 function pagetitle_handler($atts, $content = null) {
     return '<div class="page-title row">' . $content . '</div>';
@@ -98,14 +117,7 @@ function googlemap_handler($atts, $content = null) {
     $result .= "var $id = new google.maps.Map(document.getElementById('$id'), opts);";
 	
 	//call do_shortcodes on the content to place any markers
-	if ($content){
-		preg_match_all('/(\[.*?\])/', $content, $shortcodes, PREG_PATTERN_ORDER); //pull out all of the internal shortcodes
-		if ($shortcodes[0]){
-			foreach ($shortcodes[0] as $shortcode){
-				$result .= do_shortcode($shortcode);
-			}
-		}
-	}
+	$result .= do_nested_shortcodes($content);
 	
     $result .= "}; google.maps.event.addDomListener(window, 'load', initialize_$id);";
     $result .= "</script>";
