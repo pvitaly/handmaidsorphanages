@@ -22,6 +22,11 @@ class Image {
 	public $post_content;
 	
 	/**
+	The mime type of the post.
+	*/
+	public $post_mime_type;
+	
+	/**
 	Boolean value indicating whether or not this image should be displayed in the main
 	page image carousel.
 	*/
@@ -32,7 +37,7 @@ class Image {
 	Returns the url for the image, firing all appropriate triggers 
 	*/
 	public function get_url(){
-		return wp_get_attachment_url($ID);
+		return wp_get_attachment_url($this->ID);
 	}
 	
 	/**
@@ -43,6 +48,14 @@ class Image {
 				'where' => "t.ID = '$ID'"
 			);
 		return PodsHelper::find_one(__CLASS__, $params);	
+	}
+	
+	public static function get_image_by_name($name){
+		$params = array(
+			'where' => 't.post_name = "' . $name . '"'
+		);
+		
+		return PodsHelper::find_one(__CLASS__, $params);
 	}
 	
 	/**
