@@ -171,3 +171,12 @@ function float_left($atts, $content = null) {
 }
 
 add_shortcode('left', 'float_left');
+
+function anchor($atts) {
+	extract(shortcode_atts(array(
+        'name' => ''
+                    ), $atts));
+    return '<a class="jumpAnchor" id="' . $name . '"></a>';
+}
+
+add_shortcode('anchor', 'anchor');
