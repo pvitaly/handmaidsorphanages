@@ -7,7 +7,7 @@
 get_header(); 
 
 // get the carousel images and randomize them
-$img_list = Image::get_carousel_images();
+$img_list = Image::get_carousel_images("home");
 
 shuffle($img_list); 
 $context = array(

@@ -16,6 +16,27 @@ function build_page_menu() {
     $context['page_list'] = $page_list;
     Timber::render('navmenu.twig', $context);
 }
+
+/**
+ Renders the favicon link if applicable
+*/
+function write_favicon(){
+	$favicon = Image::get_image_by_name('favicon');
+	if ($favicon){
+		echo '<link rel="shortcut icon" href="' . $favicon->get_url(). '" type="' . $favicon->post_mime_type . '" />';
+	}
+}
+
+/**
+Renders the logo img tag
+*/
+function write_logo(){
+	$logo = Image::get_image_by_name('logo');
+	if ($logo){
+		echo '<img class="logo" src="' . $logo->get_url() .'" />';
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 7]>
@@ -29,32 +50,17 @@ function build_page_menu() {
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width">
+	<?php write_favicon(); ?>
+	
 	<title><?php echo wp_title( '|', false, 'right' ), get_bloginfo('name'); ?></title>
 	<?php wp_head(); ?>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(function() {
-			$(window).scroll(function() {
-				if($(this).scrollTop() != 0) {
-					$('#backtotop').fadeIn();	
-				} else {
-					$('#backtotop').fadeOut();
-				}
-			});
-		 
-			$('#backtotop').click(function() {
-				$('body,html').animate({scrollTop:0},800);
-			});	
-		});
-		
-	</script>
 </head>
 <body <?php body_class() ?> >
 	<div id="page">
 		<div id="header">
-			<div class="wrapper clearfix">
-				<img class="logo" src="<?php echo get_stylesheet_directory_uri() . "/img/logo.png"; ?>"/>
-				<div id="mainTitle">handmaids of the blessed trinity orphanages</div>
+			<div class="wrapper clearfix center navbar navbar-fixed-top navbar-inverse">
+				<?php write_logo(); ?>
+				<div id="mainTitle"><?php echo strtolower(get_bloginfo('name')); ?></div>
 				<?php build_page_menu(); ?>
 			</div>
 		</div>

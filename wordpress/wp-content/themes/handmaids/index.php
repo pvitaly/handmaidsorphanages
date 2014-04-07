@@ -1,18 +1,7 @@
 <?php
-/*
- * This is the main page of the Handmaids of the Blessed Trinity Orphanages site.
+/* 
+ This is the default template of the Handmaids of the Blessed Trinity WordPress theme. This template will only
+ be used when no other appropriate template can be found, which is why we simply redirect to the 404 page.
  */
 
-get_header();
-
-?>
-
-<div id="content" class="container">
-    <div class="row">
-		<h2>Page not found</h2>
-		<p>The resource you requested could not be found.</p>
-	</div>
-</div>
-
-<?
-get_footer(); 
+require '404.php';

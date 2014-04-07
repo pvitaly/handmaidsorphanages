@@ -19,7 +19,7 @@ body {
     text-align: center;
 }
 .wrapper {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -28,13 +28,13 @@ body {
     border: 0;
     padding: 0;
 }
+
 /********************* Header  ****************************/
 .logo {
-    width: 50px;
-    height: 50px;
-    float: left;
-    display: block;
-    margin: 10px 10px 10px 10px;
+    width: 90px;
+    height: 90px;
+    display: inline-block;
+    margin: 0px 10px 5px 0px;
 }
 
 #header {
@@ -43,17 +43,53 @@ body {
 }
 
 #mainTitle {
-    width: 40%;
     font-family: 'Garamond';
     font-variant: small-caps;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
-    float: left;
+    display: inline-block;
     margin-top: 10px;
-    color: #888;
+    color: #555;
 }
 
 /******************************* Nav Menu ********************************/
+
+.center.navbar .nav,.center.navbar .nav>li {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.center .container {
+    width: 100%;
+    text-align: center;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: black;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: black;
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: white;
+}
+
+.navbar-inverse {
+    background-color: #F0F0F0; 
+    border-color: #F0F0F0;  
+}
+
+.navbar-toggle {
+    float: none;
+}
+
+#fixednav li a {
+    letter-spacing: 1px;
+    color: white;
+}
 
 #navmenu { /* nav menu div */
     width: 100%;
@@ -66,21 +102,20 @@ body {
 #navmenu ul { /* top level menu list */
     position: relative;
     list-style-type: none;
-    float: left;
     margin: 0;
     padding: 0;
 }
 
-#navmenu ul > li { /* horizontal list */
+/*#navmenu ul > li {  horizontal list 
     float: left;
-}
+}*/
 
 #navmenu ul > li a {
-	border-right: 1px solid #FFF;
+    border-right: 1px solid #FFF;
 }
 
 #navmenu ul > li:last-child a {
-	border-right: none;
+    border-right: none;
 }
 
 #navmenu li a {  /* all menu links */
@@ -140,6 +175,10 @@ body {
     background-color: #444;
 }
 
+#main-container {
+    margin-top: 120px;
+}
+
 /************************************ Sidebar ***********************************/
 
 #sidebar > ul .current  > a
@@ -157,15 +196,15 @@ body {
     height: auto;
 }
 
-#sidebar-title {
-	font-weight: bold;
+.sidebar-header {
+    font-weight: bold;
 }
 
 #sidebar ul {
     list-style-type: none;
     margin: 0 10px 0 0;
     padding: 0;
-	font-size: 95%;
+    font-size: 95%;
 }
 
 #sidebar > ul > li {
@@ -201,7 +240,12 @@ body {
     float: left;
     padding: 10px;
     background-color: #FFF;
-	border: 1px solid #D1D1D1
+    border: 1px solid #D1D1D1
+}
+
+#content img {
+	margin: 5px;
+	box-shadow: 0px 0px 5px #AAA;
 }
 
 .content-container {
@@ -216,29 +260,31 @@ body {
     margin: 0 0 20px;
 }
 
-.post-title {
-    font-size: 13px;
-    font-weight: bold;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-}
-
-.post-date {
+.section-title {
+    clear: both;
     font-size: 15px;
     font-weight: bold;
     font-style: italic;
     padding-bottom: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #BBB;
-}
-
-.post-content {
-    clear: both;
 }
 
 #main {
     padding-top: 20px;
     clear: both;
+}
+
+.float_right {
+    float:right;
+}
+
+.float_left {
+    float:left;
+}
+
+#generic-carousel-div {
+    padding: 0 10px 10px 10px;
 }
 
 #carousel-div {
@@ -255,11 +301,8 @@ body {
 }
 .carousel-control {
     width: 5%;
-    left: 12%;
 }
-.carousel-control.right {
-    left: 83%;
-}
+
 .carousel-control.left, .carousel-control.right {
     color: white;
     background-image: none;
@@ -276,29 +319,36 @@ body {
     margin : 0px 0px 0px 0px;
     position : fixed;
     bottom : 10px;
+    right: 0px;
     font-size : 90%;
-    padding	: 10px;
-    width : 100px;
+    padding: 10px 20px;
     text-align : center;
     background-color : #000;
     border-radius : 8px;
     -webkit-border-radius : 8px;
     -moz-border-radius : 8px;
-    filter : alpha(opacity=60);
-    -khtml-opacity : 0.6;
-    -moz-opacity : 0.6;
-    opacity	: 0.6;
-    color : #FFF;
-    font-size : 14px;
-    z-index	: 1000;
+    filter : alpha(opacity=40);
+    -khtml-opacity : 0.4;
+    -moz-opacity : 0.4;
+    opacity	: 0.4;
+    color: #FFF;
+    font-size: 14px;
+    z-index: 1000;
     clear: left;
 }
 #backtotop:hover
 {
-    filter : alpha(opacity=90);
-    -khtml-opacity : 0.9;
-    -moz-opacity : 0.9;
-    opacity	: 0.9;
+    filter : alpha(opacity=970);
+    -khtml-opacity : 0.7;
+    -moz-opacity : 0.7;
+    opacity	: 0.7;
+}
+
+a.jumpAnchor {
+	display: block;
+	position: relative;
+	top: -150px;
+	visibility: hidden;
 }
 
 @media (min-width : 1200px) {
@@ -323,4 +373,35 @@ body {
         width: 100%;
         height: 100%;
     }
+}
+@media ( max-width : 768px) {
+    .navbar-toggle {
+        display: none;
+    }
+    .navbar-collapse.collapse {
+        display: block !important;
+    }
+    .navbar-header {
+        float: none;
+    }
+}
+@media ( max-width : 725px) {
+    #main-container {
+        margin-top: 140px;
+    }
+}
+@media ( max-width : 559px) {
+    .navbar-toggle {
+        display: inline-block;
+    }
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-header {
+        float: none;
+    }
+    #main-container {
+        margin-top: 50px;
+    }
+
 }

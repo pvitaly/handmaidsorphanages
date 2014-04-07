@@ -2,39 +2,49 @@
     <div class="row">
     {% if pages|e %}
         <div id="sidebar" class="col-xs-3 col-md-2">
-			{% if sidebar_title is defined %}
-				<div id="sidebar-title">{{sidebar_title}}</div>
-			{% endif %}
             <ul>
 		{% for page in pages %}
-                <li{% if page.is_in_page_path %} class="current"{% endif%}><a href="{{page.guid}}">{{page.title}}</a>
-				{% if page.children|e %}
+                <li{% if page.is_in_page_path %} class="current"{% endif%}>
+                    {% if page.has_content %}
+                    <a href="{{page.guid}}">{{page.title}}</a>
+                    {% else %}
+                    <span class="sidebar-header">{{page.title}}</span>
+                    {% endif %}
+
+                    {% if page.children|e %}
                     <ul>
-						{% for sub_page in page.children %}
-                        <li{% if sub_page.is_in_page_path %} class="current"{% endif %}><a href="{{sub_page.guid}}">{{sub_page.title}}</a></li>
-						{% endfor %}
+                        {% for sub_page in page.children %}
+                        <li{% if sub_page.is_in_page_path %} class="current"{% endif %}>
+
+                            {% if sub_page.has_content %}
+                            <a href="{{sub_page.guid}}">{{sub_page.title}}</a>
+                            {% else %}
+                            <span class="sidebar-header">{{sub_page.title}}</span>
+                            {% endif %}
+
+                        </li>
+                        {% endfor %}
                     </ul>
-				{% endif %}
+                    {% endif %}
                 </li>
-		{% endfor %}
+                {% endfor %}
             </ul>
         </div>
     {% endif %}
 
-
         {% if pages|e %}
         <div class="content-container col-xs-9 col-md-10">
         {% else %}
-        <div class="content-container col-xs-12 col-md-12">   
+            <div class="content-container col-xs-12 col-md-12">   
         {% endif %}
 	{% for post in posts %}
-            <div class="content-container row">
-                <div class="page-title row">{{post.title}}</div>
-                <div class="page-content row">
+                <div class="content-container row">
+                    <div class="page-title row">{{post.title}}</div>
+                    <div class="page-content row">
 				{{post.content}}
-                </div><!-- content-container div -->
-            </div>
+                    </div><!-- content-container div -->
+                </div>
 	{% endfor %}
+            </div>
         </div>
     </div>
-</div>

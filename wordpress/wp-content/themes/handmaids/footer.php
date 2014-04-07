@@ -52,9 +52,11 @@
 	
 	
 		<?php wp_footer(); ?> 	
+ 
 		
 		
 </body>
+
 <?php 
 
 /* 
@@ -66,7 +68,8 @@ echo "<!--\n";
 echo "TOTAL QUERY COUNT: ", count($wpdb->queries) ,"\n\n";
 var_dump($wpdb->queries); 
 echo "\n-->";
-?>
+?>		
+
 
 </html>
 

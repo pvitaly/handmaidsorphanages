@@ -1,7 +1,9 @@
 <?php
+
 /*
-A class for working with images.
-*/
+  A class for working with images.
+ */
+
 class Image {
 	
 	public static $PODS_NAME = 'media';
@@ -22,17 +24,21 @@ class Image {
 	public $post_content;
 	
 	/**
-	Boolean value indicating whether or not this image should be displayed in the main
-	page image carousel.
+	The mime type of the post.
 	*/
-	public $show_in_carousel;
+	public $post_mime_type;
+	
+	/**
+	The name of the carousel this image is included in, if any.
+	*/
+	public $carousel;
 	
 	
 	/**
 	Returns the url for the image, firing all appropriate triggers 
 	*/
 	public function get_url(){
-		return wp_get_attachment_url($ID);
+		return wp_get_attachment_url($this->ID);
 	}
 	
 	/**
@@ -43,6 +49,14 @@ class Image {
 				'where' => "t.ID = '$ID'"
 			);
 		return PodsHelper::find_one(__CLASS__, $params);	
+	}
+	
+	public static function get_image_by_name($name){
+		$params = array(
+			'where' => 't.post_name = "' . $name . '"'
+		);
+		
+		return PodsHelper::find_one(__CLASS__, $params);
 	}
 	
 	/**
@@ -56,11 +70,13 @@ class Image {
 			return PodsHelper::find(__CLASS__, $params);
 	}
 	
-	public static function get_carousel_images(){
-			$params = array(
-					'where' => "show_in_carousel.meta_value = 1"
-				);
-			
-			return PodsHelper::find( __CLASS__, $params);
-	}
+	public static function get_carousel_images($carousel_name) {
+        $where = "carousel.meta_value like '%" . $carousel_name . "%'";
+
+        $params = array(
+            'where' => $where
+        );
+
+        return PodsHelper::find(__CLASS__, $params);
+    }
 }
