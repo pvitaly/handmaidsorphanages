@@ -67,3 +67,4 @@ function write_logo(){
 
 		<div id="main-container" class="wrapper container">
 			<div id="main">
+	
