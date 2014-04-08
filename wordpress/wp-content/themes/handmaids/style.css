@@ -41,6 +41,9 @@ body {
     width: 100%;
     font-family: 'Garamond'
 }
+#header-logo-title {
+    text-align: left;
+}
 
 #mainTitle {
     font-family: 'Garamond';
@@ -244,8 +247,8 @@ body {
 }
 
 #content img {
-	margin: 5px;
-	box-shadow: 0px 0px 5px #AAA;
+    margin: 5px;
+    box-shadow: 0px 0px 5px #AAA;
 }
 
 .content-container {
@@ -313,6 +316,13 @@ body {
 .carousel-control .icon-prev, .carousel-control .glyphicon-chevron-left {
     left: 20%;
 }
+#generic-carousel-div .carousel-control.left {
+    left:2%;
+}
+
+#generic-carousel-div .carousel-control.right {
+    right:2%;
+}
 #backtotop {
     cursor : pointer;
     display : none;
@@ -345,10 +355,10 @@ body {
 }
 
 a.jumpAnchor {
-	display: block;
-	position: relative;
-	top: -150px;
-	visibility: hidden;
+    display: block;
+    position: relative;
+    top: -150px;
+    visibility: hidden;
 }
 
 @media (min-width : 1200px) {
@@ -385,12 +395,20 @@ a.jumpAnchor {
         float: none;
     }
 }
-@media ( max-width : 725px) {
+@media ( max-width : 888px) {
     #main-container {
-        margin-top: 140px;
+        margin-top: 165px;
     }
 }
-@media ( max-width : 559px) {
+@media ( max-width : 712px) {
+    #main-container {
+        margin-top: 203px;
+    }
+    #header-logo-title {
+        text-align: center;
+    }
+}
+@media ( max-width : 608px) {
     .navbar-toggle {
         display: inline-block;
     }
@@ -401,7 +419,7 @@ a.jumpAnchor {
         float: none;
     }
     #main-container {
-        margin-top: 50px;
+        margin-top: 174px;
     }
 
 }

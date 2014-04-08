@@ -59,9 +59,11 @@ function write_logo(){
 	<div id="page">
 		<div id="header">
 			<div class="wrapper clearfix center navbar navbar-fixed-top navbar-inverse">
-				<?php write_logo(); ?>
+                            <div id="header-logo-title" class="container">
+                            <?php write_logo(); ?>
 				<div id="mainTitle"><?php echo strtolower(get_bloginfo('name')); ?></div>
-				<?php build_page_menu(); ?>
+                            </div>
+        	<?php build_page_menu(); ?>
 			</div>
 		</div>
 
