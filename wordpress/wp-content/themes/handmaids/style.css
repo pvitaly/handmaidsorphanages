@@ -15,6 +15,7 @@ body {
 }
 #footer
 {
+	clear: both;
     padding-top: 10px;
     text-align: center;
 }
@@ -180,6 +181,16 @@ body {
 
 #main-container {
     margin-top: 120px;
+}
+
+#shareTagList {
+	list-style-type: none;
+	padding: 0;
+}
+
+#shareTagList > li {
+	float: left;
+	padding: 5px;
 }
 
 /************************************ Sidebar ***********************************/
