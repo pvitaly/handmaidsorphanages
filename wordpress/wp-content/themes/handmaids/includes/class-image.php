@@ -51,9 +51,9 @@ class Image {
 		return PodsHelper::find_one(__CLASS__, $params);	
 	}
 	
-	public static function get_image_by_name($name){
+	public static function get_image_by_title($title){
 		$params = array(
-			'where' => 't.post_name = "' . $name . '"'
+			'where' => 't.post_title = "' . $title . '"'
 		);
 		
 		return PodsHelper::find_one(__CLASS__, $params);
@@ -74,7 +74,8 @@ class Image {
         $where = "carousel.meta_value like '%" . $carousel_name . "%'";
 
         $params = array(
-            'where' => $where
+            'where' => $where,
+			'orderby' => 't.post_title'
         );
 
         return PodsHelper::find(__CLASS__, $params);

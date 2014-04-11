@@ -6,7 +6,7 @@ Contains functions for customizing the admin menus.
 
 /**************************** Media ******************************/
 
-function my_manage_media_columns_filter($columns, $wp_list_table){
+function add_media_carousel_column($columns, $wp_list_table){
 	//insert the show in carousel column into the desired position
 	$pos = 4;
 
@@ -15,13 +15,7 @@ function my_manage_media_columns_filter($columns, $wp_list_table){
 		array_slice($columns, $pos, count($columns) - 1, true);
 }
 
-function my_manage_upload_sortable_columns_filter($columns){
-	$columns['carousel'] ='carousel';
-	
-	return $columns;
-}
-
-function my_manage_media_custom_column($column_name, $post_id){
+function get_media_carousel_value($column_name, $post_id){
 	$img = Image::get_image_by_id($post_id);
 
 	if (!is_null($img) && $img->carousel){
@@ -29,10 +23,28 @@ function my_manage_media_custom_column($column_name, $post_id){
 	}
 }
 
-add_filter( 'manage_media_columns',  'my_manage_media_columns_filter', 10, 2);
-add_filter( 'manage_upload_sortable_columns',  'my_manage_upload_sortable_columns_filter', 10, 1);
-add_action('manage_media_custom_column', 'my_manage_media_custom_column', 10, 2);
+function add_media_carousel_sortable($columns){
+	$columns['carousel'] ='carousel';
+	
+	return $columns;
+}
 
+function add_media_carousel_sort_vars($vars){
+	if ( isset ($vars['orderby']) && $vars['orderby'] == 'carousel'){
+		$vars = array_merge($vars, array(
+			'meta_key' => 'carousel',
+			'orderby' => 'meta_value'
+		));
+	}
+	
+	return $vars;
+}
+
+add_filter( 'manage_media_columns',  'add_media_carousel_column', 10, 2);
+add_action('manage_media_custom_column', 'get_media_carousel_value', 10, 2);
+
+add_filter( 'manage_upload_sortable_columns',  'add_media_carousel_sortable', 10, 1);
+add_filter('request', 'add_media_carousel_sort_vars', 10, 1);
 
 /************************** Pages *****************************/
 

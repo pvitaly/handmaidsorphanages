@@ -21,7 +21,7 @@ function build_page_menu() {
  Renders the favicon link if applicable
 */
 function write_favicon(){
-	$favicon = Image::get_image_by_name('favicon');
+	$favicon = Image::get_image_by_title('favicon');
 	if ($favicon){
 		echo '<link rel="shortcut icon" href="' . $favicon->get_url(). '" type="' . $favicon->post_mime_type . '" />';
 	}
@@ -31,7 +31,7 @@ function write_favicon(){
 Renders the logo img tag
 */
 function write_logo(){
-	$logo = Image::get_image_by_name('logo');
+	$logo = Image::get_image_by_title('logo');
 	if ($logo){
 		echo '<img class="logo" src="' . $logo->get_url() .'" />';
 	}
@@ -52,7 +52,7 @@ function write_logo(){
 	<meta name="viewport" content="width=device-width">
 	<?php write_favicon(); ?>
 	
-	<title><?php echo wp_title( '|', false, 'right' ), get_bloginfo('name'); ?></title>
+	<title><?php echo wp_title( '|', false, 'right' ); ?></title>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class() ?> >
